@@ -12,4 +12,5 @@ object Modules {
     //libraries
     const val Domain = ":domain"
     const val Core = ":core"
+    const val Data = ":data"
 }

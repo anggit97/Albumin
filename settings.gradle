@@ -2,3 +2,4 @@ rootProject.name = "Albumin"
 include ':app'
 include ':domain'
 include ':core'
+include ':data'
