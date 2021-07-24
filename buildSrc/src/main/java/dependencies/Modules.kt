@@ -8,4 +8,7 @@ package dependencies
 object Modules {
     //app
     const val App = ":app"
+
+    //libraries
+    const val Domain = ":domain"
 }

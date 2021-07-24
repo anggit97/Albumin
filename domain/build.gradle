@@ -1,0 +1,29 @@
+import dependencies.Libs
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'kotlin-kapt'
+
+apply from: rootProject.file('gradle/android.gradle')
+
+dependencies {
+    implementation Libs.Kotlin.stdlib
+    implementation Libs.Kotlin.serialization
+    implementation Libs.Coroutines.core
+    implementation Libs.Coroutines.android
+
+    implementation Libs.AndroidX.Paging.runtime
+
+    implementation Libs.Dagger.hilt
+    kapt Libs.Dagger.hiltCompiler
+    implementation Libs.AndroidX.Hilt.work
+    kapt Libs.AndroidX.Hilt.compiler
+
+    testImplementation Libs.Test.junit
+    testImplementation Libs.Test.mockk
+    testImplementation Libs.Test.coroutine
+    androidTestImplementation Libs.Test.runner
+    androidTestImplementation Libs.Test.espresso
+}
