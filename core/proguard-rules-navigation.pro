@@ -1,0 +1,8 @@
+-keepnames class com.anggit97.detail.DetailActivity
+-keepnames class com.anggit97.home.HomeFragment
+-keepnames class com.anggit97.home.test.TestPaging
+-keepnames class com.anggit97.model.model.Movie
+-keepnames class com.anggit97.profile.ui.ProfileFragment
+-keepnames class com.anggit97.search.SearchFragment
+-keepnames class com.anggit97.settings.SettingsFragment
+-keepnames class com.anggit97.theme.ThemeSettingsFragment
