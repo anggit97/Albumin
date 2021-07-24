@@ -134,6 +134,10 @@ object Libs {
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:5.7.1"
     }
 
+    object Tmkurami{
+        const val dexopener = "com.github.tmurakami:dexopener:2.0.5"
+    }
+
     object Retrofit {
         private const val version = "2.9.0"
         const val runtime = "com.squareup.retrofit2:retrofit:$version"
