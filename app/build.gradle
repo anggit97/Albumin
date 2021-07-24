@@ -57,6 +57,11 @@ android {
 }
 
 dependencies {
+    implementation project(Modules.Data)
+    implementation project(Modules.Domain)
+    implementation project(Modules.Core)
+
+    implementation project(Modules.Posts)
 
     implementation Libs.Kotlin.stdlib
     implementation Libs.Kotlin.serialization

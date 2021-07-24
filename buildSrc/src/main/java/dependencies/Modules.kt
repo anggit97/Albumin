@@ -13,4 +13,7 @@ object Modules {
     const val Domain = ":domain"
     const val Core = ":core"
     const val Data = ":data"
+
+    //features
+    const val Posts = ":features:posts"
 }
