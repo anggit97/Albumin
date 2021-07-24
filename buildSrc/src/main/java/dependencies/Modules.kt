@@ -16,4 +16,7 @@ object Modules {
 
     //features
     const val Posts = ":features:posts"
+
+    //library
+    const val StFalconImageViewer = ":library:stfalcon-imageviewer"
 }
