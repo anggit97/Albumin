@@ -1,7 +1,28 @@
 <resources>
 
-    <!-- TextAppearance -->
+    <!--  Font  -->
+    <style name="FontBold">
+        <item name="fontPath">fonts/Nunito-Bold.ttf</item>
+    </style>
 
+    <style name="FontRegular">
+        <item name="fontPath">fonts/Montserrat-Regular.otf</item>
+    </style>
+
+    <style name="FontBlack">
+        <item name="fontPath">fonts/Nunito-Black.ttf</item>
+    </style>
+
+    <style name="FontItalic">
+        <item name="fontPath">fonts/Nunito-Italic.ttf</item>
+    </style>
+
+    <style name="FontLight">
+        <item name="fontPath">fonts/Nunito-Light.ttf</item>
+    </style>
+
+
+    <!-- TextAppearance -->
     <style name="TextAppearance.Chip" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textStyle">bold</item>
     </style>

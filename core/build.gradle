@@ -50,6 +50,9 @@ dependencies {
     api Libs.threetenAbp
     implementation Libs.timber
 
+    implementation Libs.InflationX.calligraphy3
+    implementation Libs.InflationX.viewPump
+
     testImplementation Libs.Test.junit
     testImplementation Libs.Test.core
     testImplementation Libs.Test.coroutine

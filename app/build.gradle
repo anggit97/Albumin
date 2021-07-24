@@ -97,6 +97,9 @@ dependencies {
     implementation Libs.timber
     implementation Libs.lottie
 
+    implementation Libs.InflationX.calligraphy3
+    implementation Libs.InflationX.viewPump
+
     testImplementation Libs.Test.junit
     testImplementation Libs.Test.mockk
     testImplementation Libs.Test.coroutine

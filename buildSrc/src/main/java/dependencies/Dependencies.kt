@@ -103,7 +103,7 @@ object Libs {
             const val ktx = "androidx.room:room-ktx:$version"
         }
 
-        object DataStore{
+        object DataStore {
             const val preferences = "androidx.datastore:datastore-preferences:1.0.0-rc01"
         }
 
@@ -134,7 +134,7 @@ object Libs {
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:5.7.1"
     }
 
-    object Tmkurami{
+    object Tmkurami {
         const val dexopener = "com.github.tmurakami:dexopener:2.0.5"
     }
 
@@ -147,6 +147,11 @@ object Libs {
 
     object OkHttp {
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.1"
+    }
+
+    object InflationX {
+        const val calligraphy3 = "io.github.inflationx:calligraphy3:3.1.1"
+        const val viewPump = "io.github.inflationx:viewpump:2.0.3"
     }
 
     object Glide {

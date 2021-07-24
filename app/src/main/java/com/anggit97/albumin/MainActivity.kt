@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.anggit97.albumin.databinding.ActivityMainBinding
+import com.anggit97.core.base.BaseActivity
 import com.anggit97.core.util.viewBindings
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val binding by viewBindings(ActivityMainBinding::inflate)
 
