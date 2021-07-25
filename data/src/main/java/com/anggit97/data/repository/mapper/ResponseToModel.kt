@@ -1,11 +1,12 @@
 package com.anggit97.data.repository.mapper
 
 import com.anggit97.data.api.response.AddressResponse
+import com.anggit97.data.api.response.CommentResponse
 import com.anggit97.data.api.response.PostResponse
 import com.anggit97.data.api.response.UserResponse
+import com.anggit97.domain.model.Comment
 import com.anggit97.domain.model.Post
 import com.anggit97.domain.model.User
-
 
 /**
  * Created by Anggit Prayogo on 25,July,2021
@@ -37,5 +38,11 @@ fun List<UserResponse>.toUserList() = map {
 }
 
 fun AddressResponse.toAddress() = "${this.street} ${this.suite}, ${this.city}"
+
+fun List<CommentResponse>.toCommentList() = map { it.toComment() }
+
+fun CommentResponse.toComment() = Comment(
+    body = body, id = id, name = name
+)
 
 

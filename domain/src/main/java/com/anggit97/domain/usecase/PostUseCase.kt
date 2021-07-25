@@ -1,5 +1,6 @@
 package com.anggit97.domain.usecase
 
+import com.anggit97.domain.model.Comment
 import com.anggit97.domain.model.Post
 import com.anggit97.domain.repository.PostRepository
 import com.anggit97.domain.repository.UserRepository
@@ -16,6 +17,8 @@ import javax.inject.Inject
 interface PostUseCase {
 
     suspend fun getPostList(): Flow<List<Post>>
+
+    suspend fun getPostComment(postId: String): Flow<List<Comment>>
 }
 
 @ExperimentalCoroutinesApi
@@ -34,5 +37,9 @@ class PostUseCaseImpl @Inject constructor(
                 result
             }
         }
+    }
+
+    override suspend fun getPostComment(postId: String): Flow<List<Comment>> {
+        return postRepository.getPostComment(postId)
     }
 }

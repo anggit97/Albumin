@@ -1,5 +1,6 @@
 package com.anggit97.domain.repository
 
+import com.anggit97.domain.model.Comment
 import com.anggit97.domain.model.Post
 import kotlinx.coroutines.flow.Flow
 
@@ -11,4 +12,6 @@ import kotlinx.coroutines.flow.Flow
 interface PostRepository {
 
     suspend fun getPosts(): Flow<List<Post>>
+
+    suspend fun getPostComment(postId: String): Flow<List<Comment>>
 }
