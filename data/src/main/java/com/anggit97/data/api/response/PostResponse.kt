@@ -8,7 +8,7 @@ data class PostResponse(
     @SerialName("body")
     val body: String?,
     @SerialName("id")
-    val id: Int?,
+    val id: Int,
     @SerialName("title")
     val title: String?,
     @SerialName("userId")

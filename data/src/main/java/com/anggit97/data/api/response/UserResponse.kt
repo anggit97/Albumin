@@ -13,7 +13,7 @@ data class UserResponse(
     @SerialName("email")
     val email: String?,
     @SerialName("id")
-    val id: Int?,
+    val id: Int,
     @SerialName("name")
     val name: String?,
     @SerialName("phone")
