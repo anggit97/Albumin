@@ -49,7 +49,7 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
     }
 
     private fun HeaderDetailPostBinding.setupView() {
-        searchBackContainer.setOnClickListener {
+        searchBack.setOnClickListener {
             findNavController().navigateUp()
         }
     }
