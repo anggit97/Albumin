@@ -22,6 +22,14 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 
+inline fun View.setVisible() {
+    visibility = View.VISIBLE
+}
+
+inline fun View.setGone() {
+    visibility = View.GONE
+}
+
 inline fun View.animateVisible(
     isVisible: Boolean,
     startDelay: Long = 0,

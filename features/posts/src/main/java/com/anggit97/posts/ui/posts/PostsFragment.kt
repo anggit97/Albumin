@@ -2,12 +2,11 @@ package com.anggit97.posts.ui.posts
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.anggit97.core.ext.animateGone
-import com.anggit97.core.ext.animateVisible
-import com.anggit97.core.ext.showToast
+import com.anggit97.core.ext.*
 import com.anggit97.core.util.autoCleared
 import com.anggit97.domain.model.Post
 import com.anggit97.posts.R
@@ -47,8 +46,7 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
         rvPost.apply {
             setItemViewCacheSize(20)
             adapter = listAdapter
-            layoutManager =
-                LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(requireActivity())
             itemAnimator = FadeInAnimator()
         }
 
@@ -70,24 +68,21 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     }
 
     private fun ContentPostsBinding.showErrorContent() {
-        rvPost.animateGone(true)
-        viewEmpty.root.animateGone(true)
-        viewErrorConnection.root.animateVisible(true)
-        viewLoading.root.animateGone(true)
+        rvPost.setGone()
+        viewEmpty.root.setGone()
+        viewErrorConnection.root.setGone()
+        viewLoading.root.setVisible()
     }
 
     private fun ContentPostsBinding.handleLoading(isLoading: Boolean) {
-        rvPost.animateGone(true)
-        viewEmpty.root.animateGone(true)
-        viewErrorConnection.root.animateGone(true)
-        viewLoading.root.animateVisible(isLoading)
+        viewLoading.root.isVisible = isLoading
     }
 
     private fun ContentPostsBinding.showSuccessContent(data: List<Post>) {
-        rvPost.animateVisible(true)
-        viewEmpty.root.animateGone(true)
-        viewErrorConnection.root.animateGone(true)
-        viewLoading.root.animateGone(true)
+        rvPost.setVisible()
+        viewEmpty.root.setGone()
+        viewErrorConnection.root.setGone()
+        viewLoading.root.setGone()
 
         listAdapter.submitList(data)
     }
