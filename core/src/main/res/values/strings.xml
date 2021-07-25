@@ -16,4 +16,6 @@
     <string name="message_empty_posts_body">Let\'s find interesting post in this app</string>
 
     <string name="read_more">Read More..</string>
+
+    <string name="working_at">Working at %s</string>
 </resources>

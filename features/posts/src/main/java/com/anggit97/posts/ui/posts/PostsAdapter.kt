@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.anggit97.core.ext.loadAsyncCircle
 import com.anggit97.core.util.IdBasedDiffCallback
 import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.domain.model.Post
+import com.anggit97.posts.R
 import com.anggit97.posts.databinding.PostItemBinding
 
 
@@ -31,9 +33,11 @@ class PostsAdapter(
         fun bind(item: Post?) {
             binding.apply {
                 tvUserName.text = item?.user?.name
-                tvUserCompany.text = item?.user?.company
+                tvUserCompany.text =
+                    root.context.getString(R.string.working_at, item?.user?.company)
                 tvPostTitle.text = item?.title
                 tvPostBody.text = item?.body
+                ivUserAvatar.loadAsyncCircle(item?.user?.getAvatarUrl())
             }
         }
     }
