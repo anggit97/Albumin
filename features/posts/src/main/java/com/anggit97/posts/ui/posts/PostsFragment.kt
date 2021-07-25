@@ -2,9 +2,12 @@ package com.anggit97.posts.ui.posts
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.ActivityNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anggit97.core.ext.*
 import com.anggit97.core.util.autoCleared
@@ -12,6 +15,7 @@ import com.anggit97.domain.model.Post
 import com.anggit97.posts.R
 import com.anggit97.posts.databinding.ContentPostsBinding
 import com.anggit97.posts.databinding.FragmentPostsBinding
+import com.anggit97.posts.ui.detail.PostDetailFragmentArgs
 import com.anggit97.posts.ui.viewmodels.PostListState
 import com.anggit97.posts.ui.viewmodels.PostSharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,8 +43,14 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     }
 
     private fun ContentPostsBinding.setupView(viewModel: PostSharedViewModel) {
-        listAdapter = PostsAdapter(root.context) {
-            requireActivity().showToast(it.title)
+        listAdapter = PostsAdapter(root.context) { post, sharedElements ->
+            findNavController().navigate(
+                PostsFragmentDirections.actionToDetailPost(post),
+                ActivityNavigatorExtras(
+                    activityOptions = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(requireActivity(), *sharedElements)
+                )
+            )
         }
 
         rvPost.apply {

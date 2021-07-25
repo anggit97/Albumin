@@ -21,6 +21,7 @@ import javax.inject.Inject
  */
 interface PostSharedViewModelContract {
     fun getPosts()
+    fun getPostDetailById(postId: String, postsList: List<Post>): Post?
 }
 
 @HiltViewModel
@@ -40,6 +41,10 @@ class PostSharedViewModel @Inject constructor(
                 .onCompletion { _postState.value = PostListState.HideLoading }
                 .collectLatest { _postState.value = PostListState.Success(it) }
         }
+    }
+
+    override fun getPostDetailById(postId: String, postsList: List<Post>): Post? {
+        return postsList.firstOrNull { it.id.toString() == postId }
     }
 }
 

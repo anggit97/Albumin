@@ -6,6 +6,19 @@
 
     <fragment
         android:id="@+id/fragmentPost"
-        android:name="com.anggit97.posts.ui.posts.PostsFragment" />
+        android:name="com.anggit97.posts.ui.posts.PostsFragment" >
+        <action
+            android:id="@+id/action_to_detail_post"
+            app:destination="@id/fragmentPostDetail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentPostDetail"
+        android:name="com.anggit97.posts.ui.detail.PostDetailFragment">
+        <argument
+            android:name="post"
+            app:argType="com.anggit97.domain.model.Post"
+            app:nullable="false" />
+    </fragment>
 
 </navigation>
