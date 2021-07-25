@@ -30,7 +30,6 @@
             <TextView
                 android:id="@+id/tvUserName"
                 style="@style/FontBold"
-                tools:text="Anggit Prayogo Wahid"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_10"
@@ -40,11 +39,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@id/ivUserAvatar"
-                app:layout_constraintTop_toTopOf="@id/ivUserAvatar" />
+                app:layout_constraintTop_toTopOf="@id/ivUserAvatar"
+                tools:text="Anggit Prayogo Wahid" />
 
             <TextView
                 android:id="@+id/tvUserCompany"
-                tools:text="PT Google Sejahtera"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/nobel"
@@ -53,12 +52,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/tvUserName"
-                app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+                app:layout_constraintTop_toBottomOf="@id/tvUserName"
+                tools:text="PT Google Sejahtera" />
 
             <TextView
                 android:id="@+id/tvPostTitle"
                 style="@style/FontBold"
-                tools:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_16"
@@ -66,12 +65,12 @@
                 android:textSize="@dimen/font_larger"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvUserCompany" />
+                app:layout_constraintTop_toBottomOf="@id/tvUserCompany"
+                tools:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit" />
 
             <TextView
                 android:id="@+id/tvPostBody"
                 style="@style/FontRegular"
-                tools:text="quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_10"
@@ -79,7 +78,29 @@
                 android:textSize="@dimen/font_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPostTitle" />
+                app:layout_constraintTop_toBottomOf="@id/tvPostTitle"
+                tools:text="quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto" />
+
+            <TextView
+                android:id="@+id/tvCommentHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:textColor="@color/mirage"
+                android:textSize="@dimen/font_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPostBody"
+                tools:text="Comments (20)" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCommentHeader"
+                tools:listitem="@layout/comment_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
