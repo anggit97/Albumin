@@ -16,7 +16,7 @@ import com.anggit97.posts.ui.viewmodels.PostListState
 import com.anggit97.posts.ui.viewmodels.PostSharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
-import timber.log.Timber
+import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 @AndroidEntryPoint
 class PostsFragment : Fragment(R.layout.fragment_posts) {
@@ -47,7 +47,9 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
             setItemViewCacheSize(20)
             adapter = listAdapter
             layoutManager = LinearLayoutManager(requireActivity())
-            itemAnimator = FadeInAnimator()
+            itemAnimator = FadeInAnimator().apply {
+                addDuration = 1000
+            }
         }
 
         viewModel.postState.observe(viewLifecycleOwner) {
@@ -61,7 +63,6 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
             is PostListState.HideLoading -> binding.contentPosts.handleLoading(false)
             is PostListState.ShowLoading -> binding.contentPosts.handleLoading(true)
             is PostListState.Success -> {
-                Timber.d("Judul : " + state.data.first().title)
                 binding.contentPosts.showSuccessContent(state.data)
             }
         }
