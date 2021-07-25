@@ -1,5 +1,6 @@
 package com.anggit97.albumin
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -9,7 +10,9 @@ import androidx.core.content.ContextCompat
 import com.anggit97.albumin.databinding.ActivityMainBinding
 import com.anggit97.core.base.BaseActivity
 import com.anggit97.core.util.viewBindings
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     private val binding by viewBindings(ActivityMainBinding::inflate)
@@ -26,7 +29,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun navigateToHome() {
-
+        Intent(this, HomeActivity::class.java).also(::startActivity)
+        finish()
     }
 
     private fun setUpStatusBarColor() {

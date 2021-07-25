@@ -10,8 +10,7 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper
  * Created by Anggit Prayogo on 24,July,2021
  * GitHub : https://github.com/anggit97
  */
-@AndroidEntryPoint
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
