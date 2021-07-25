@@ -161,6 +161,10 @@ object Libs {
         const val transformation = "jp.wasabeef:glide-transformations:4.3.0"
     }
 
+    object Shimmer {
+        const val shimmer = "com.facebook.shimmer:shimmer:0.5.0"
+    }
+
     object Firebase {
         const val core = "com.google.firebase:firebase-core:17.2.1"
         const val crashlytics = "com.google.firebase:firebase-crashlytics:17.2.2"

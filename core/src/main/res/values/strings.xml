@@ -8,4 +8,12 @@
 
     <string name="no_movies_description">There are no movie items</string>
     <string name="release_date">Release Date</string>
+    <string name="latest_post">Latest Post</string>
+
+    <string name="message_error_no_internet">Oops, Your internet is loss.</string>
+    <string name="message_error_no_internet_body">Please check your internet connection</string>
+    <string name="message_empty_posts">Yawn, there is no post yet.</string>
+    <string name="message_empty_posts_body">Let\'s find interesting post in this app</string>
+
+    <string name="read_more">Read More..</string>
 </resources>

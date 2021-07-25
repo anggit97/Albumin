@@ -7,6 +7,13 @@
 
     <color name="home_hint">#FFFFFF</color>
 
+    <color name="bombay">#BBBCBE</color>
+    <color name="mirage">#1B1D28</color>
+    <color name="malibu">#5AC9FD</color>
+    <color name="indigo">#5654D7</color>
+
+    <color name="shimmer">#DDDDDD</color>
+
     <color name="tag_age_unknown">@color/grey</color>
     <color name="tag_age_all">@color/green</color>
     <color name="tag_age_12">@color/blue</color>

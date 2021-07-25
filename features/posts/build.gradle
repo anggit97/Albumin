@@ -34,6 +34,10 @@ dependencies {
 
     implementation Libs.timber
 
+    implementation Libs.lottie
+
+    implementation Libs.Shimmer.shimmer
+
     implementation Libs.recyclerViewAnimators
 
     testImplementation Libs.Test.junit

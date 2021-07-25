@@ -50,6 +50,8 @@ dependencies {
     api Libs.threetenAbp
     implementation Libs.timber
 
+    implementation Libs.lottie
+
     implementation Libs.InflationX.calligraphy3
     implementation Libs.InflationX.viewPump
 

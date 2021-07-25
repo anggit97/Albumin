@@ -3,5 +3,56 @@
     <dimen name="tag_width">36dp</dimen>
     <dimen name="tag_height">18dp</dimen>
 
+    <!-- font sizes -->
+    <dimen name="font_larger">22sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_normal">15sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+
+    <!-- typical spacing between two views -->
+    <dimen name="spacing_huge">40dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_normal">14dp</dimen>
+    <dimen name="spacing_small">10dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_vertical_screen">10dp</dimen>
+    <dimen name="spacing_horizontal_screen">16dp</dimen>
+
+    <!-- typical sizes of views -->
+    <dimen name="action_bar_size">60dp</dimen>
+    <dimen name="button_height_tall">60dp</dimen>
+    <dimen name="button_height_normal">40dp</dimen>
+    <dimen name="button_height_short">32dp</dimen>
+    <dimen name="bottom_nav_size">56dp</dimen>
+    <dimen name="radius_bg_home">30dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="banner_height">150dp</dimen>
+    <dimen name="banner_detail_height">200dp</dimen>
+    <dimen name="bg_home_height">150dp</dimen>
+    <dimen name="logo_splash_icon">150dp</dimen>
+    <dimen name="dimen_250">250dp</dimen>
+    <dimen name="dimen_220">220dp</dimen>
+    <dimen name="dimen_230">230dp</dimen>
+    <dimen name="dimen_150">150dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_0">0dp</dimen>
+    <dimen name="dimen_10">10dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
+    <dimen name="dimen_64">64dp</dimen>
+    <dimen name="dimen_48">48dp</dimen>
+    <dimen name="dimen_32">32dp</dimen>
+    <dimen name="dimen_120">120dp</dimen>
+    <dimen name="dimen_130">130dp</dimen>
+    <dimen name="dimen_3">3dp</dimen>
+    <dimen name="dimen_200">200dp</dimen>
+    <dimen name="dimen_170">170dp</dimen>
+    <dimen name="dimen_7">7dp</dimen>
+    <dimen name="dimen_50">50dp</dimen>
+    <dimen name="dimen_24">24dp</dimen>
+    <dimen name="dimen_85">85dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+    <dimen name="bottom_sheet_top_padding">8dp</dimen>
+    <dimen name="notch_height">5dp</dimen>
+
     <integer name="grid_span_count">3</integer>
 </resources>
