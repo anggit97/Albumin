@@ -29,6 +29,8 @@ dependencies {
     implementation Libs.AndroidX.Navigation.fragment
 
     implementation Libs.Dagger.hilt
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.Dagger.hiltCompiler
     kapt Libs.AndroidX.Hilt.compiler
 

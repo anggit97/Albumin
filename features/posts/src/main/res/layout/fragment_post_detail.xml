@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.PostDetailFragment">
+
+    <include
+        android:id="@+id/headerDetailPost"
+        layout="@layout/header_detail_post" />
+
+    <include
+        android:id="@+id/contentDetailPost"
+        layout="@layout/content_detail_post" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
