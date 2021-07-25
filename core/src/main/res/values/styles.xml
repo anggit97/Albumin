@@ -6,7 +6,7 @@
     </style>
 
     <style name="FontRegular">
-        <item name="fontPath">fonts/Montserrat-Regular.otf</item>
+        <item name="fontPath">fonts/Nunito-Regular.otf</item>
     </style>
 
     <style name="FontBlack">

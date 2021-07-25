@@ -23,7 +23,6 @@ import javax.inject.Singleton
  * Created by Anggit Prayogo on 25,July,2021
  * GitHub : https://github.com/anggit97
  */
-@ExperimentalSerializationApi
 @Module(includes = [ApiModule.Providers::class])
 @InstallIn(SingletonComponent::class)
 object ApiModule {

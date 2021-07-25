@@ -38,7 +38,7 @@ dependencies {
 
     implementation Libs.AndroidX.Paging.runtime
 
-    implementation Libs.Retrofit.runtime
+    api Libs.Retrofit.runtime
     implementation Libs.Retrofit.serialization
 
     implementation Libs.OkHttp.loggingInterceptor
