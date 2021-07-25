@@ -86,6 +86,11 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
             }
         }
 
+        swipeRefreshLayout.setOnRefreshListener {
+            fetchData()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         viewModel.postState.observe(viewLifecycleOwner) {
             it?.let { handleContentState(it) }
         }
@@ -110,6 +115,7 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     }
 
     private fun ContentPostsBinding.handleLoading(isLoading: Boolean) {
+        if (listAdapter.itemCount != 0) return
         viewLoading.root.isVisible = isLoading
     }
 
