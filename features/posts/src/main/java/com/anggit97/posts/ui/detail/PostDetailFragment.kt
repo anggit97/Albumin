@@ -78,6 +78,11 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
             addItemDecoration(DividerItemDecoration(root.context, LinearLayoutManager.VERTICAL))
         }
 
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getPostComment(args.post.id.toString())
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         viewModel.commentState.observe(viewLifecycleOwner) {
             it?.let { handleCommentState(it) }
         }
@@ -104,6 +109,7 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
     }
 
     private fun ContentDetailPostBinding.handleLoading(isLoading: Boolean) {
+        if (commentAdapter.itemCount != 0) return
         viewLoading.root.isVisible = isLoading
     }
 
