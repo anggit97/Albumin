@@ -12,5 +12,5 @@ data class PostResponse(
     @SerialName("title")
     val title: String?,
     @SerialName("userId")
-    val userId: Int?
+    val userId: Int
 )

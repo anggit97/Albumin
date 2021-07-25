@@ -13,7 +13,7 @@ import com.anggit97.domain.model.User
  */
 fun List<PostResponse>.toPostList() = map {
     Post(
-        body = it.body ?: "", id = it.id, title = it.title ?: "",
+        body = it.body ?: "", id = it.id, title = it.title ?: "", userId = it.userId,
         user = User(
             address = "",
             company = "",
