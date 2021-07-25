@@ -85,7 +85,7 @@
                 android:id="@+id/tvCommentHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_24"
+                android:layout_marginTop="@dimen/dimen_30"
                 android:textColor="@color/mirage"
                 android:textSize="@dimen/font_large"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,11 +96,40 @@
                 android:id="@+id/rvComments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCommentHeader"
                 tools:listitem="@layout/comment_item" />
+
+            <include
+                android:id="@+id/viewLoading"
+                layout="@layout/base_loading_post"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCommentHeader" />
+
+            <include
+                android:id="@+id/viewEmpty"
+                layout="@layout/base_empty_post"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCommentHeader" />
+
+            <include
+                android:id="@+id/viewErrorConnection"
+                layout="@layout/base_error_no_internet_connection"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCommentHeader" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

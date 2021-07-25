@@ -49,6 +49,7 @@
     <dimen name="dimen_7">7dp</dimen>
     <dimen name="dimen_50">50dp</dimen>
     <dimen name="dimen_24">24dp</dimen>
+    <dimen name="dimen_30">30dp</dimen>
     <dimen name="dimen_85">85dp</dimen>
     <dimen name="bottom_sheet_corner_radius">16dp</dimen>
     <dimen name="bottom_sheet_top_padding">8dp</dimen>

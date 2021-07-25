@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="@dimen/dimen_16"
+    android:layout_marginTop="@dimen/dimen_10"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -17,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvUserName"
+        android:id="@+id/tvAuthor"
         style="@style/FontBold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -34,8 +35,8 @@
 
 
     <TextView
-        android:id="@+id/tvPostTitle"
-        style="@style/FontBold"
+        android:id="@+id/tvComment"
+        style="@style/FontRegular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_7"
