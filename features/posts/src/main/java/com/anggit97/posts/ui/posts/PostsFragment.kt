@@ -1,12 +1,15 @@
 package com.anggit97.posts.ui.posts
 
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.core.app.ActivityOptionsCompat
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.ActivityNavigatorExtras
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anggit97.core.ext.*
@@ -15,23 +18,41 @@ import com.anggit97.domain.model.Post
 import com.anggit97.posts.R
 import com.anggit97.posts.databinding.ContentPostsBinding
 import com.anggit97.posts.databinding.FragmentPostsBinding
-import com.anggit97.posts.ui.detail.PostDetailFragmentArgs
-import com.anggit97.posts.ui.viewmodels.PostListState
-import com.anggit97.posts.ui.viewmodels.PostSharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
-import jp.wasabeef.recyclerview.animators.LandingAnimator
+import timber.log.Timber
+
 
 @AndroidEntryPoint
 class PostsFragment : Fragment(R.layout.fragment_posts) {
 
     private var binding: FragmentPostsBinding by autoCleared()
 
-    private val viewModels: PostSharedViewModel by activityViewModels()
+    private val viewModels by viewModels<PostViewModel>()
 
     private lateinit var listAdapter: PostsAdapter
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Timber.d("ON ATTACH")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Timber.d("ONCREATE")
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        Timber.d("ONCREATE VIEW")
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Timber.d("ONCREATE VIEW CREATED")
         binding = FragmentPostsBinding.bind(view).apply {
             fetchData()
             contentPosts.setupView(viewModels)
@@ -42,14 +63,17 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
         viewModels.getPosts()
     }
 
-    private fun ContentPostsBinding.setupView(viewModel: PostSharedViewModel) {
+    private fun ContentPostsBinding.setupView(viewModel: PostViewModel) {
         listAdapter = PostsAdapter(root.context) { post, sharedElements ->
+            val navOptions: NavOptions = NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .setRestoreState(true)
+                .build()
+
             findNavController().navigate(
                 PostsFragmentDirections.actionToDetailPost(post),
-                ActivityNavigatorExtras(
-                    activityOptions = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(requireActivity(), *sharedElements)
-                )
+                navOptions
+//                FragmentNavigatorExtras(*sharedElements)
             )
         }
 
@@ -96,5 +120,20 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
         viewLoading.root.setGone()
 
         listAdapter.submitList(data)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Timber.d("DESTROY VIEW")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.d("DESTROY")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Timber.d("DETACH")
     }
 }

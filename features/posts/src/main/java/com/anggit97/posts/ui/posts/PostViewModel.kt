@@ -1,4 +1,4 @@
-package com.anggit97.posts.ui.viewmodels
+package com.anggit97.posts.ui.posts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,7 +25,7 @@ interface PostSharedViewModelContract {
 }
 
 @HiltViewModel
-class PostSharedViewModel @Inject constructor(
+class PostViewModel @Inject constructor(
     private val postUseCase: PostUseCase
 ) : ViewModel(), PostSharedViewModelContract {
 

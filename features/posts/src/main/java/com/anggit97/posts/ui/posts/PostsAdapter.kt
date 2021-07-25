@@ -14,8 +14,6 @@ import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.domain.model.Post
 import com.anggit97.posts.R
 import com.anggit97.posts.databinding.PostItemBinding
-import androidx.core.util.Pair
-
 
 /**
  * Created by Anggit Prayogo on 25,July,2021
