@@ -15,19 +15,14 @@
  */
 package com.anggit97.core.ext
 
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.os.Build
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.LENGTH_SHORT
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
-import com.anggit97.core.R
 
 /** Color */
 
@@ -63,36 +58,4 @@ fun Context.startActivitySafely(intent: Intent) {
 
 private fun Intent.isValid(ctx: Context): Boolean {
     return resolveActivity(ctx.packageManager) != null
-}
-
-fun Context.executeWeb(url: String?) {
-    if (url == null) return
-    startNonBrowserActivity(url, fallback = { startBrowserActivity(url) })
-}
-
-private fun Context.startBrowserActivity(url: String) {
-    CustomTabsIntent.Builder()
-        .setShareState(CustomTabsIntent.SHARE_STATE_ON)
-        .setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
-        .setShowTitle(true)
-        .setStartAnimations(this, R.anim.fade_in, R.anim.fade_out)
-        .setExitAnimations(this, R.anim.fade_in, R.anim.fade_out)
-        .build()
-        .launchUrl(this, Uri.parse(url))
-}
-
-private fun Context.startNonBrowserActivity(url: String, fallback: () -> Unit) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        try {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
-                addCategory(Intent.CATEGORY_BROWSABLE)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_REQUIRE_NON_BROWSER
-            }
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            fallback()
-        }
-    } else {
-        fallback()
-    }
 }

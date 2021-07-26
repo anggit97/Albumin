@@ -14,6 +14,7 @@ import com.anggit97.core.ext.setGone
 import com.anggit97.core.ext.setVisible
 import com.anggit97.core.ext.showToast
 import com.anggit97.core.util.autoCleared
+import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.domain.model.Comment
 import com.anggit97.domain.model.Post
 import com.anggit97.posts.R
@@ -61,11 +62,27 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
         tvPostTitle.text = post.title
         tvPostBody.text = post.body
         ivUserAvatar.loadAsyncCircle(post.user.getAvatarUrl())
+
+        tvUserName.setOnDebounceClickListener {
+            navigateToDetailUser()
+        }
+
+        tvUserCompany.setOnDebounceClickListener {
+            navigateToDetailUser()
+        }
+
+        ivUserAvatar.setOnDebounceClickListener {
+            navigateToDetailUser()
+        }
+    }
+
+    private fun navigateToDetailUser(){
+        findNavController().navigate(PostDetailFragmentDirections.actionToDetailUser(args.post.user))
     }
 
     private fun ContentDetailPostBinding.setupComments(viewModel: PostDetailViewModel) {
         commentAdapter = CommentsAdapter(root.context) {
-            findNavController().navigate(PostDetailFragmentDirections.actionToDetailUser(args.post.user))
+            requireActivity().showToast(it.name)
         }
 
         rvComments.apply {
