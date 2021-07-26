@@ -27,7 +27,7 @@ class UserDetailViewModel @Inject constructor(
     val album: LiveData<AlbumState>
         get() = _album
 
-    private val _photos: LiveData<PhotosState> = _album.switchMap { albumState ->
+    val photos: LiveData<PhotosState> = _album.switchMap { albumState ->
         liveData {
             if (albumState is AlbumState.Success) {
                 albumState.data.map {
@@ -51,6 +51,21 @@ class UserDetailViewModel @Inject constructor(
                 .onCompletion { _album.value = AlbumState.HideLoading }
                 .collectLatest {
                     _album.value = AlbumState.Success(it)
+                }
+        }
+    }
+
+    fun getUpdateList(photos: List<Photo>, albums: List<Album>): List<Album> {
+        val albumId = photos.firstOrNull()?.albumId
+        return if (albumId == null) {
+            listOf()
+        } else {
+            albums
+                .filter { albumResult -> albumResult.id == albumId }
+                .map { album ->
+                    val albumCopy = album.copy()
+                    albumCopy.photos = photos
+                    albumCopy
                 }
         }
     }

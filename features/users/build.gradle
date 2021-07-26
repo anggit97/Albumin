@@ -38,6 +38,8 @@ dependencies {
 
     implementation Libs.Shimmer.shimmer
 
+    implementation Libs.lottie
+
     implementation Libs.recyclerViewAnimators
 
     testImplementation Libs.Test.junit

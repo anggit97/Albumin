@@ -28,7 +28,6 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     private var _binding: FragmentPostsBinding? = null
     private val binding get() = _binding!!
 
-
     private val viewModels: PostViewModel by activityViewModels()
 
     private val listAdapter: PostsAdapter by lazy {
