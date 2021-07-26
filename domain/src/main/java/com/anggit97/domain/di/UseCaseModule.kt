@@ -4,6 +4,8 @@ import com.anggit97.domain.repository.PostRepository
 import com.anggit97.domain.repository.UserRepository
 import com.anggit97.domain.usecase.PostUseCase
 import com.anggit97.domain.usecase.PostUseCaseImpl
+import com.anggit97.domain.usecase.UserUseCase
+import com.anggit97.domain.usecase.UserUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,5 +30,14 @@ object UseCaseModule {
         userRepository: UserRepository
     ): PostUseCase = PostUseCaseImpl(
         postRepository, userRepository
+    )
+
+    @ExperimentalCoroutinesApi
+    @Singleton
+    @Provides
+    fun provideUserUseCase(
+        userRepository: UserRepository
+    ): UserUseCase = UserUseCaseImpl(
+        userRepository
     )
 }

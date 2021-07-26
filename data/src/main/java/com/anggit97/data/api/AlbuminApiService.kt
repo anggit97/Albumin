@@ -22,7 +22,7 @@ interface AlbuminApiService {
     suspend fun getPostComment(@Query("postId") postId: String): List<CommentResponse>
 
     @GET("users/{userId}/albums")
-    suspend fun getAlbums(@Path("userId") userId: String): List<AlbumResponse>
+    suspend fun getUserAlbums(@Path("userId") userId: String): List<AlbumResponse>
 
     @GET("albums/{albumId}/photos")
     suspend fun getAlbumPhotos(@Path("albumId") albumId: String): List<PhotoResponse>

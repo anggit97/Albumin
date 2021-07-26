@@ -14,7 +14,7 @@ interface UserRepository {
 
     suspend fun getUsers(): Flow<List<User>>
 
-    suspend fun getAlbums(userId: String): Flow<List<Album>>
+    suspend fun getUserAlbums(userId: String): Flow<List<Album>>
 
     suspend fun getAlbumPhotos(albumId: String): Flow<List<Photo>>
 }

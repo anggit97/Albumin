@@ -29,9 +29,9 @@ class UserRepositoryImpl(
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun getAlbums(userId: String): Flow<List<Album>> {
+    override suspend fun getUserAlbums(userId: String): Flow<List<Album>> {
         return flow {
-            val result = remote.getAlbums(userId).toAlbumList()
+            val result = remote.getUserAlbums(userId).toAlbumList()
             emit(result)
         }.flowOn(Dispatchers.IO)
     }
