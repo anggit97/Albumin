@@ -33,13 +33,18 @@ class PostViewModel @Inject constructor(
     val postState: LiveData<PostListState>
         get() = _postState
 
+    var value = 0
+
     override fun getPosts() {
         viewModelScope.launch {
             postUseCase.getPostList()
                 .catch { _postState.value = PostListState.Error(it) }
                 .onStart { _postState.value = PostListState.ShowLoading }
                 .onCompletion { _postState.value = PostListState.HideLoading }
-                .collectLatest { _postState.value = PostListState.Success(it) }
+                .collectLatest {
+                    _postState.value = PostListState.Success(it)
+                    value = 1
+                }
         }
     }
 

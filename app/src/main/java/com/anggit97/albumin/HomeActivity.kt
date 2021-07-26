@@ -9,6 +9,7 @@ import com.anggit97.core.base.BaseActivity
 import com.anggit97.core.ui.base.consumeBackEventInChildFragment
 import com.anggit97.core.util.viewBindings
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity() {
@@ -25,6 +26,10 @@ class HomeActivity : BaseActivity() {
         setContentView(binding.root)
 
         navController = navHostFragment.navController
+        navHostFragment.childFragmentManager.addOnBackStackChangedListener {
+            val backStackEntry = navHostFragment.childFragmentManager.backStackEntryCount
+            Timber.d("BACKSTACK COUNT : $backStackEntry")
+        }
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
