@@ -20,12 +20,10 @@ dependencies {
 
     implementation Libs.AndroidX.activity
     implementation Libs.AndroidX.appcompat
-    implementation Libs.AndroidX.browser
     implementation Libs.AndroidX.core
     implementation Libs.AndroidX.constraintlayout
     implementation Libs.AndroidX.fragment
     implementation Libs.AndroidX.recyclerview
-    implementation Libs.AndroidX.startup
 
     implementation Libs.Google.material
 
@@ -39,13 +37,9 @@ dependencies {
     kapt Libs.Dagger.hiltCompiler
     kapt Libs.AndroidX.Hilt.compiler
 
-    implementation Libs.AndroidX.Paging.runtime
-
     implementation Libs.Glide.runtime
     kapt Libs.Glide.compiler
     implementation Libs.Glide.transformation
-
-    implementation Libs.Firebase.dynamicLinks
 
     api Libs.threetenAbp
     implementation Libs.timber

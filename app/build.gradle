@@ -73,10 +73,7 @@ dependencies {
     implementation Libs.AndroidX.core
     implementation Libs.AndroidX.constraintlayout
     implementation Libs.AndroidX.fragment
-    implementation Libs.AndroidX.preference
     implementation Libs.AndroidX.recyclerview
-    implementation Libs.AndroidX.startup
-    implementation Libs.AndroidX.transition
 
     implementation Libs.Google.material
 
@@ -108,7 +105,6 @@ dependencies {
     testImplementation Libs.Test.mockk
     testImplementation Libs.Test.coroutine
     androidTestImplementation Libs.Test.mockkAndroid
-    androidTestImplementation Libs.AndroidX.WorkManager.testing
     androidTestImplementation Libs.Test.core
     androidTestImplementation Libs.Tmkurami.dexopener
     androidTestImplementation Libs.Test.runner

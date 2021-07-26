@@ -27,16 +27,10 @@ dependencies {
     implementation Libs.Coroutines.core
     implementation Libs.Coroutines.android
 
-    implementation Libs.AndroidX.Room.runtime
-    implementation Libs.AndroidX.Room.ktx
-    kapt Libs.AndroidX.Room.compiler
-
     implementation Libs.AndroidX.core
 
     implementation Libs.Dagger.hilt
     kapt Libs.Dagger.hiltCompiler
-
-    implementation Libs.AndroidX.Paging.runtime
 
     api Libs.Retrofit.runtime
     implementation Libs.Retrofit.serialization

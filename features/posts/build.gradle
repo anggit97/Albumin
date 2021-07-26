@@ -21,7 +21,6 @@ dependencies {
     implementation Libs.AndroidX.constraintlayout
     implementation Libs.AndroidX.recyclerview
     implementation Libs.AndroidX.swiperefreshlayout
-    implementation Libs.AndroidX.Paging.runtime
 
     implementation Libs.Google.material
 

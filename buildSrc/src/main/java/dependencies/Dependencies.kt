@@ -50,9 +50,7 @@ object Libs {
     }
 
     object Google {
-        const val gmsPlugin = "com.google.gms:google-services:4.3.4"
         const val material = "com.google.android.material:material:1.4.0"
-        const val play = "com.google.android.play:core:1.8.3"
     }
 
     object AndroidX {
@@ -60,17 +58,11 @@ object Libs {
         const val activity = "androidx.activity:activity-ktx:1.2.3"
         const val annotation = "androidx.annotation:annotation:1.2.0"
         const val appcompat = "androidx.appcompat:appcompat:1.3.0"
-        const val browser = "androidx.browser:browser:1.3.0"
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val core = "androidx.core:core-ktx:1.5.0"
-        const val drawerlayout = "androidx.drawerlayout:drawerlayout:1.1.1"
         const val fragment = "androidx.fragment:fragment-ktx:1.3.4"
-        const val preference = "androidx.preference:preference-ktx:1.1.1"
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
         const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-        const val startup = "androidx.startup:startup-runtime:1.0.0"
-        const val transition = "androidx.transition:transition:1.4.1"
-        const val viewpager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
 
         object Hilt {
             private const val version = "1.0.0"
@@ -95,30 +87,6 @@ object Libs {
                 "androidx.navigation:navigation-dynamic-features-fragment:$version"
             const val safeArgsPlugin =
                 "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
-        }
-
-        object Room {
-            private const val version = "2.3.0"
-            const val runtime = "androidx.room:room-runtime:$version"
-            const val compiler = "androidx.room:room-compiler:$version"
-            const val ktx = "androidx.room:room-ktx:$version"
-        }
-
-        object DataStore {
-            const val preferences = "androidx.datastore:datastore-preferences:1.0.0-rc01"
-        }
-
-        object Paging {
-            private const val version = "3.0.0"
-
-            const val runtime = "androidx.paging:paging-runtime:$version"
-        }
-
-        object WorkManager {
-            private const val version = "2.5.0"
-            const val runtime = "androidx.work:work-runtime-ktx:$version"
-            const val gcm = "androidx.work:work-gcm:$version"
-            const val testing = "androidx.work:work-testing:$version"
         }
     }
 
@@ -168,14 +136,5 @@ object Libs {
 
     object Shimmer {
         const val shimmer = "com.facebook.shimmer:shimmer:0.5.0"
-    }
-
-    object Firebase {
-        const val core = "com.google.firebase:firebase-core:17.2.1"
-        const val crashlytics = "com.google.firebase:firebase-crashlytics:17.2.2"
-        const val crashlyticsPlugin = "com.google.firebase:firebase-crashlytics-gradle:2.3.0"
-        const val messaging = "com.google.firebase:firebase-messaging:20.0.1"
-        const val dynamicLinks = "com.google.firebase:firebase-dynamic-links:19.0.0"
-        const val ads = "com.google.firebase:firebase-ads:18.3.0"
     }
 }
