@@ -38,15 +38,15 @@ class AlbumAdapter(
                 }
 
                 rvPhotos.apply {
-                    setItemViewCacheSize(20)
                     adapter = photoAdapter
                     itemAnimator = FadeInAnimator().apply {
                         addDuration = 1000
                     }
+                    setHasFixedSize(true)
                     isNestedScrollingEnabled = false
                 }
 
-                photoAdapter.submitList(item?.photos)
+                photoAdapter.submitList(item?.photos?.take(20))
             }
         }
     }

@@ -31,7 +31,6 @@ class PhotosAdapter(
 
         fun bind(item: Photo?) {
             binding.apply {
-                Timber.d("PHOTO URL : ${item?.thumbnailUrl}")
                 ivPhoto.loadAsync(item?.thumbnailUrl)
             }
         }

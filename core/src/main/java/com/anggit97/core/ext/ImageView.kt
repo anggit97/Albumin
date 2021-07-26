@@ -26,12 +26,15 @@ import com.anggit97.core.glide.GlideRequest
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import java.io.File
+
 
 /** ImageView */
 
@@ -66,7 +69,7 @@ fun ImageView.loadAsyncCircle(url: String?, @DrawableRes placeholder: Int? = nul
                     placeholder(placeholder)
                 }
                 transition(withCrossFade())
-                .apply(RequestOptions.bitmapTransform(CircleCrop()))
+                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
             }
         )
     }
@@ -81,9 +84,17 @@ fun ImageView.loadAsync(url: String?, doOnEnd: () -> Unit) {
     )
 }
 
+fun String.toGlideUrl(): GlideUrl {
+    return GlideUrl(
+        this, LazyHeaders.Builder()
+            .addHeader("User-Agent", "USER_AGENT")
+            .build()
+    )
+}
+
 private inline fun ImageView.loadAsync(url: String?, block: GlideRequest<Drawable>.() -> Unit) {
     GlideApp.with(context)
-        .load(url)
+        .load(url?.toGlideUrl())
         .apply(block)
         .priority(Priority.IMMEDIATE)
         .into(this)

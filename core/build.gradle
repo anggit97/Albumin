@@ -55,6 +55,11 @@ dependencies {
     implementation Libs.InflationX.calligraphy3
     implementation Libs.InflationX.viewPump
 
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+    implementation ('com.github.bumptech.glide:okhttp3-integration:4.7.1'){
+        exclude group: 'glide-parent'
+    }
+
     testImplementation Libs.Test.junit
     testImplementation Libs.Test.core
     testImplementation Libs.Test.coroutine
