@@ -28,7 +28,10 @@
     <fragment
         android:id="@+id/fragmentUserDetail"
         android:name="com.anggit97.users.ui.UserDetailFragment">
-
+        <argument
+            android:name="user"
+            app:argType="com.anggit97.domain.model.User"
+            app:nullable="false" />
     </fragment>
 
 </navigation>

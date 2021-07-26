@@ -65,7 +65,7 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
 
     private fun ContentDetailPostBinding.setupComments(viewModel: PostDetailViewModel) {
         commentAdapter = CommentsAdapter(root.context) {
-            findNavController().navigate(PostDetailFragmentDirections.actionToDetailUser())
+            findNavController().navigate(PostDetailFragmentDirections.actionToDetailUser(args.post.user))
         }
 
         rvComments.apply {
