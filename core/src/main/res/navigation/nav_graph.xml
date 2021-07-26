@@ -27,10 +27,23 @@
 
     <fragment
         android:id="@+id/fragmentUserDetail"
-        android:name="com.anggit97.users.ui.UserDetailFragment">
+        android:name="com.anggit97.users.ui.userdetail.UserDetailFragment">
+        <action
+            android:id="@+id/action_to_full_screen_image"
+            app:destination="@id/fragmentFullScreenImage" />
+
         <argument
             android:name="user"
             app:argType="com.anggit97.domain.model.User"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentFullScreenImage"
+        android:name="com.anggit97.users.ui.fullscreen.FullScreenImageFragment">
+        <argument
+            android:name="photo"
+            app:argType="com.anggit97.domain.model.Photo"
             app:nullable="false" />
     </fragment>
 

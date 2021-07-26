@@ -1,4 +1,4 @@
-package com.anggit97.users.ui
+package com.anggit97.users.ui.userdetail
 
 import android.os.Bundle
 import android.view.View
@@ -22,7 +22,6 @@ import com.anggit97.users.databinding.FragmentUserDetailBinding
 import com.anggit97.users.databinding.HeaderDetailUserBinding
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
-import timber.log.Timber
 
 @AndroidEntryPoint
 class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
@@ -62,9 +61,11 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
     }
 
     private fun ContentDetailUserBinding.setupView(viewModel: UserDetailViewModel) {
-        albumAdapter = AlbumAdapter(root.context) {
+        albumAdapter = AlbumAdapter(root.context, listener = {
             requireActivity().showToast(it.title)
-        }
+        }, listenerPhoto = {
+            findNavController().navigate(UserDetailFragmentDirections.actionToFullScreenImage(it))
+        })
 
         rvAlbum.apply {
             setItemViewCacheSize(20)

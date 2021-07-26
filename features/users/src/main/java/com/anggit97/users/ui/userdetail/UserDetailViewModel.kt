@@ -1,4 +1,4 @@
-package com.anggit97.users.ui
+package com.anggit97.users.ui.userdetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

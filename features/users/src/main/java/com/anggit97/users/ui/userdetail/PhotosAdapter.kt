@@ -1,4 +1,4 @@
-package com.anggit97.users.ui
+package com.anggit97.users.ui.userdetail
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,12 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anggit97.core.ext.loadAsync
-import com.anggit97.core.ext.loadAsyncCircle
 import com.anggit97.core.util.IdBasedDiffCallback
 import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.domain.model.Photo
 import com.anggit97.users.databinding.PhotoItemBinding
-import timber.log.Timber
 
 /**
  * Created by Anggit Prayogo on 26,July,2021

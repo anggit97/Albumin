@@ -1,16 +1,15 @@
-package com.anggit97.users.ui
+package com.anggit97.users.ui.userdetail
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.anggit97.core.ext.showToast
 import com.anggit97.core.util.IdBasedDiffCallback
 import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.domain.model.Album
+import com.anggit97.domain.model.Photo
 import com.anggit97.users.databinding.AlbumItemBinding
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
 
@@ -21,7 +20,8 @@ import jp.wasabeef.recyclerview.animators.FadeInAnimator
 class AlbumAdapter(
     context: Context,
     diffCallback: DiffUtil.ItemCallback<Album> = IdBasedDiffCallback { it.id.toString() },
-    private val listener: (Album) -> Unit
+    private val listener: (Album) -> Unit,
+    private val listenerPhoto: (Photo) -> Unit
 ) : ListAdapter<Album, AlbumAdapter.PostViewHolder>(diffCallback) {
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -29,12 +29,12 @@ class AlbumAdapter(
     class PostViewHolder(private val binding: AlbumItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Album?) {
+        fun bind(item: Album?, listenerPhoto: (Photo) -> Unit) {
             binding.apply {
                 tvAlbumTitle.text = item?.title
 
                 val photoAdapter = PhotosAdapter(root.context) {
-                    root.context.showToast(it.title)
+                    listenerPhoto(it)
                 }
 
                 rvPhotos.apply {
@@ -65,6 +65,6 @@ class AlbumAdapter(
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        getItem(position)?.let { (holder as? PostViewHolder)?.bind(item = it) }
+        getItem(position)?.let { (holder as? PostViewHolder)?.bind(item = it, listenerPhoto) }
     }
 }
