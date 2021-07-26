@@ -3,9 +3,11 @@ package com.anggit97.users.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.anggit97.core.ext.loadAsyncCircle
 import com.anggit97.core.util.autoCleared
+import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.users.R
 import com.anggit97.users.databinding.FragmentUserDetailBinding
 import com.anggit97.users.databinding.HeaderDetailUserBinding
@@ -32,5 +34,9 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
         tvUserEmail.text = user.email
         tvUserLocation.text = user.address
         ivUserAvatar.loadAsyncCircle(user.getAvatarUrl())
+
+        searchBack.setOnDebounceClickListener {
+            findNavController().navigateUp()
+        }
     }
 }

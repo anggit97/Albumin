@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:contentScrim="@color/white"
+        android:descendantFocusability="blocksDescendants"
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <androidx.appcompat.widget.Toolbar
