@@ -1,9 +1,8 @@
 package com.anggit97.data.api
 
-import com.anggit97.data.api.response.CommentResponse
-import com.anggit97.data.api.response.PostResponse
-import com.anggit97.data.api.response.UserResponse
+import com.anggit97.data.api.response.*
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -21,4 +20,10 @@ interface AlbuminApiService {
 
     @GET("comments")
     suspend fun getPostComment(@Query("postId") postId: String): List<CommentResponse>
+
+    @GET("users/{userId}/albums")
+    suspend fun getAlbums(@Path("userId") userId: String): List<AlbumResponse>
+
+    @GET("albums/{albumId}/photos")
+    suspend fun getAlbumPhotos(@Path("albumId") albumId: String): List<PhotoResponse>
 }

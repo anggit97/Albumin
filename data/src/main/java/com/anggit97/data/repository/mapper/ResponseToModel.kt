@@ -1,12 +1,7 @@
 package com.anggit97.data.repository.mapper
 
-import com.anggit97.data.api.response.AddressResponse
-import com.anggit97.data.api.response.CommentResponse
-import com.anggit97.data.api.response.PostResponse
-import com.anggit97.data.api.response.UserResponse
-import com.anggit97.domain.model.Comment
-import com.anggit97.domain.model.Post
-import com.anggit97.domain.model.User
+import com.anggit97.data.api.response.*
+import com.anggit97.domain.model.*
 
 /**
  * Created by Anggit Prayogo on 25,July,2021
@@ -45,4 +40,22 @@ fun CommentResponse.toComment() = Comment(
     body = body, id = id, name = name
 )
 
+fun List<AlbumResponse>.toAlbumList() = map {
+    Album(
+        id = it.id,
+        title = it.title,
+        userId = it.userId,
+        photos = listOf()
+    )
+}
+
+fun List<PhotoResponse>.toPhotoList() = map {
+    Photo(
+        id = it.id,
+        thumbnailUrl = it.thumbnailUrl,
+        title = it.title,
+        url = it.url,
+        albumId = it.albumId
+    )
+}
 

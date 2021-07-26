@@ -1,5 +1,7 @@
 package com.anggit97.domain.repository
 
+import com.anggit97.domain.model.Album
+import com.anggit97.domain.model.Photo
 import com.anggit97.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
@@ -11,4 +13,8 @@ import kotlinx.coroutines.flow.Flow
 interface UserRepository {
 
     suspend fun getUsers(): Flow<List<User>>
+
+    suspend fun getAlbums(userId: String): Flow<List<Album>>
+
+    suspend fun getAlbumPhotos(albumId: String): Flow<List<Photo>>
 }

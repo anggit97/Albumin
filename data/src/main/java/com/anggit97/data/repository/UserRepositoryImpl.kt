@@ -1,7 +1,11 @@
 package com.anggit97.data.repository
 
 import com.anggit97.data.api.AlbuminApiService
+import com.anggit97.data.repository.mapper.toAlbumList
+import com.anggit97.data.repository.mapper.toPhotoList
 import com.anggit97.data.repository.mapper.toUserList
+import com.anggit97.domain.model.Album
+import com.anggit97.domain.model.Photo
 import com.anggit97.domain.model.User
 import com.anggit97.domain.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +25,20 @@ class UserRepositoryImpl(
     override suspend fun getUsers(): Flow<List<User>> {
         return flow {
             val result = remote.getUsers().toUserList()
+            emit(result)
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun getAlbums(userId: String): Flow<List<Album>> {
+        return flow {
+            val result = remote.getAlbums(userId).toAlbumList()
+            emit(result)
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun getAlbumPhotos(albumId: String): Flow<List<Photo>> {
+        return flow {
+            val result = remote.getAlbumPhotos(albumId).toPhotoList()
             emit(result)
         }.flowOn(Dispatchers.IO)
     }
