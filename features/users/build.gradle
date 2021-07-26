@@ -42,6 +42,10 @@ dependencies {
 
     implementation Libs.recyclerViewAnimators
 
+    implementation Libs.BaseFlow.photoview
+
+    implementation Libs.Glide.runtime
+
     testImplementation Libs.Test.junit
     androidTestImplementation Libs.Test.runner
     androidTestImplementation Libs.Test.espresso

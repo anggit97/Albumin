@@ -146,6 +146,10 @@ object Libs {
             "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
     }
 
+    object BaseFlow {
+        const val photoview = "com.github.chrisbanes:PhotoView:2.3.0"
+    }
+
     object OkHttp {
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.1"
     }
