@@ -3,33 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/dimen_16">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tvAlbumTitle"
         style="@style/FontBold"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
+        android:background="@color/shimmer"
         android:textColor="@color/mirage"
         android:textSize="@dimen/font_large"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="non esse culpa molestiae omnis sed optio" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPhotos"
+    <TextView
+        android:id="@+id/tvAlbumPhotos"
+        style="@style/FontBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_5"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/shimmer"
+        android:textColor="@color/mirage"
+        android:textSize="@dimen/font_large"
+        android:minLines="5"
+        android:layout_marginTop="@dimen/dimen_10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAlbumTitle"
-        app:spanCount="3"
-        tools:itemCount="10"
-        tools:listitem="@layout/photo_item" />
+        app:layout_constraintTop_toBottomOf="@id/tvAlbumTitle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
