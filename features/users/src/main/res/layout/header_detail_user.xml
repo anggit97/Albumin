@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_7"
-                    android:text="@string/detail_post"
+                    android:text="@string/detail_user"
                     android:textColor="@color/mirage"
                     android:textSize="@dimen/font_large"
                     app:layout_constraintBottom_toBottomOf="parent"
