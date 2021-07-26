@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragmentPost"
-        android:name="com.anggit97.posts.ui.posts.PostsFragment" >
+        android:name="com.anggit97.posts.ui.posts.PostsFragment">
         <action
             android:id="@+id/action_to_detail_post"
             app:destination="@id/fragmentPostDetail" />
@@ -15,10 +15,20 @@
     <fragment
         android:id="@+id/fragmentPostDetail"
         android:name="com.anggit97.posts.ui.detail.PostDetailFragment">
+        <action
+            android:id="@+id/action_to_detail_user"
+            app:destination="@id/fragmentUserDetail" />
+
         <argument
             android:name="post"
             app:argType="com.anggit97.domain.model.Post"
             app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentUserDetail"
+        android:name="com.anggit97.users.ui.UserDetailFragment">
+
     </fragment>
 
 </navigation>

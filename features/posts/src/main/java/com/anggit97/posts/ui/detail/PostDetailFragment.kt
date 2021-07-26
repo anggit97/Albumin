@@ -65,7 +65,7 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
 
     private fun ContentDetailPostBinding.setupComments(viewModel: PostDetailViewModel) {
         commentAdapter = CommentsAdapter(root.context) {
-            requireActivity().showToast(it.name)
+            findNavController().navigate(PostDetailFragmentDirections.actionToDetailUser())
         }
 
         rvComments.apply {
@@ -109,7 +109,7 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
     }
 
     private fun ContentDetailPostBinding.handleLoading(isLoading: Boolean) {
-        if (commentAdapter.itemCount != 0) return
+        if (commentAdapter.itemCount != 0 || viewModel.value == 1) return
         viewLoading.root.isVisible = isLoading
     }
 

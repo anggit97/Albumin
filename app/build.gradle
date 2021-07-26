@@ -63,6 +63,7 @@ dependencies {
     implementation project(Modules.Core)
 
     implementation project(Modules.Posts)
+    implementation project(Modules.Users)
 
     implementation Libs.Kotlin.stdlib
     implementation Libs.Kotlin.serialization

@@ -32,13 +32,18 @@ class PostDetailViewModel @Inject constructor(
     val commentState: LiveData<PostCommentState>
         get() = _commentState
 
+    var value = 0
+
     override fun getPostComment(postId: String) {
         viewModelScope.launch {
             postUseCase.getPostComment(postId)
                 .catch { _commentState.value = PostCommentState.Error(it) }
                 .onStart { _commentState.value = PostCommentState.ShowLoading }
                 .onCompletion { _commentState.value = PostCommentState.HideLoading }
-                .collectLatest { _commentState.value = PostCommentState.Success(it) }
+                .collectLatest {
+                    _commentState.value = PostCommentState.Success(it)
+                    value = 1
+                }
         }
     }
 }
