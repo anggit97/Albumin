@@ -15,6 +15,8 @@ import com.anggit97.users.R
 import com.anggit97.users.databinding.ContentDetailFullscreenBinding
 import com.anggit97.users.databinding.FragmentFullScreenImageBinding
 import com.anggit97.users.databinding.HeaderDetailFulllscreenBinding
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +48,7 @@ class FullScreenImageFragment : Fragment(R.layout.fragment_full_screen_image) {
     private fun ContentDetailFullscreenBinding.setView(photo: Photo) {
         GlideApp.with(this@FullScreenImageFragment)
             .asBitmap()
-            .load(photo.url)
+            .load(photo.url.toGlideUrl())
             .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     photoView.setImageBitmap(resource)
@@ -59,5 +61,13 @@ class FullScreenImageFragment : Fragment(R.layout.fragment_full_screen_image) {
                     // clear it here as you can no longer have the bitmap
                 }
             })
+    }
+
+    private fun String.toGlideUrl(): GlideUrl {
+        return GlideUrl(
+            this, LazyHeaders.Builder()
+                .addHeader("User-Agent", "USER_AGENT")
+                .build()
+        )
     }
 }
