@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.anggit97.core.ext.showToast
 import com.anggit97.core.util.IdBasedDiffCallback
 import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.domain.model.Album
 import com.anggit97.users.databinding.AlbumItemBinding
+import jp.wasabeef.recyclerview.animators.FadeInAnimator
 
 /**
  * Created by Anggit Prayogo on 26,July,2021
@@ -29,6 +32,21 @@ class AlbumAdapter(
         fun bind(item: Album?) {
             binding.apply {
                 tvAlbumTitle.text = item?.title
+
+                val photoAdapter = PhotosAdapter(root.context) {
+                    root.context.showToast(it.title)
+                }
+
+                rvPhotos.apply {
+                    setItemViewCacheSize(20)
+                    adapter = photoAdapter
+                    itemAnimator = FadeInAnimator().apply {
+                        addDuration = 1000
+                    }
+                    isNestedScrollingEnabled = false
+                }
+
+                photoAdapter.submitList(item?.photos)
             }
         }
     }

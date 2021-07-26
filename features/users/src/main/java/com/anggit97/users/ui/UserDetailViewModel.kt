@@ -1,6 +1,9 @@
 package com.anggit97.users.ui
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.anggit97.domain.model.Album
 import com.anggit97.domain.model.Photo
 import com.anggit97.domain.usecase.UserUseCase
@@ -16,6 +19,7 @@ import javax.inject.Inject
  */
 interface UserDetailViewModelContract {
     fun getUserAlbums(userId: String)
+    fun getAlbumPhotos(albums: List<Album>)
 }
 
 @HiltViewModel
@@ -27,21 +31,25 @@ class UserDetailViewModel @Inject constructor(
     val album: LiveData<AlbumState>
         get() = _album
 
-    val photos: LiveData<PhotosState> = _album.switchMap { albumState ->
-        liveData {
-            if (albumState is AlbumState.Success) {
-                albumState.data.map {
-                    userUseCase.getAlbumPhotos(it.id.toString())
-                        .catch { throwable -> emit(PhotosState.Error(throwable)) }
-                        .onStart { emit(PhotosState.ShowLoading) }
-                        .onCompletion { emit(PhotosState.HideLoading) }
-                        .collectLatest { result ->
-                            emit(PhotosState.Success(result))
-                        }
-                }
-            }
-        }
-    }
+    private val _photos = MutableLiveData<List<Photo>>()
+    val photos: LiveData<List<Photo>>
+        get() = _photos
+
+//    val photos: LiveData<PhotosState> = _album.switchMap { albumState ->
+//        liveData {
+//            if (albumState is AlbumState.Success) {
+//                albumState.data.map {
+//                    userUseCase.getAlbumPhotos(it.id.toString())
+//                        .catch { throwable -> emit(PhotosState.Error(throwable)) }
+//                        .onStart { emit(PhotosState.ShowLoading) }
+//                        .onCompletion { emit(PhotosState.HideLoading) }
+//                        .collect { result ->
+//                            emit(PhotosState.Success(result))
+//                        }
+//                }
+//            }
+//        }
+//    }
 
     override fun getUserAlbums(userId: String) {
         viewModelScope.launch {
@@ -55,17 +63,31 @@ class UserDetailViewModel @Inject constructor(
         }
     }
 
+    override fun getAlbumPhotos(albums: List<Album>) {
+        viewModelScope.launch {
+            albums.map {
+                userUseCase.getAlbumPhotos(it.id.toString())
+                    .collect { result ->
+                        _photos.value = result
+                    }
+            }
+        }
+    }
+
     fun getUpdateList(photos: List<Photo>, albums: List<Album>): List<Album> {
         val albumId = photos.firstOrNull()?.albumId
         return if (albumId == null) {
-            listOf()
+            albums
         } else {
             albums
-                .filter { albumResult -> albumResult.id == albumId }
                 .map { album ->
-                    val albumCopy = album.copy()
-                    albumCopy.photos = photos
-                    albumCopy
+                    if (album.id == albumId) {
+                        val albumCopy = album.copy()
+                        albumCopy.photos = photos
+                        albumCopy
+                    } else {
+                        album
+                    }
                 }
         }
     }

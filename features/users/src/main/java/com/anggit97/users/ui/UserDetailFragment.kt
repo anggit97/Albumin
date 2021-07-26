@@ -15,12 +15,14 @@ import com.anggit97.core.ext.showToast
 import com.anggit97.core.util.autoCleared
 import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.domain.model.Album
+import com.anggit97.domain.model.Photo
 import com.anggit97.users.R
 import com.anggit97.users.databinding.ContentDetailUserBinding
 import com.anggit97.users.databinding.FragmentUserDetailBinding
 import com.anggit97.users.databinding.HeaderDetailUserBinding
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
+import timber.log.Timber
 
 @AndroidEntryPoint
 class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
@@ -83,13 +85,17 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
         }
     }
 
-    private fun handlePhotoState(state: PhotosState) {
-        when (state) {
-            is PhotosState.Success -> {
-                val result = viewModel.getUpdateList(state.data, albumAdapter.currentList)
-            }
-            else -> {}
-        }
+    private fun handlePhotoState(photos: List<Photo>) {
+        val result = viewModel.getUpdateList(photos, albumAdapter.currentList)
+        albumAdapter.submitList(result)
+
+//        when (state) {
+//            is PhotosState.Success -> {
+//                val result = viewModel.getUpdateList(state.data, albumAdapter.currentList)
+//                albumAdapter.submitList(result)
+//            }
+//            else -> {}
+//        }
     }
 
     private fun handleAlbumState(state: AlbumState) {
@@ -97,7 +103,10 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
             is AlbumState.Error -> binding.contentDetailUser.showErrorContent()
             is AlbumState.HideLoading -> binding.contentDetailUser.handleLoading(false)
             is AlbumState.ShowLoading -> binding.contentDetailUser.handleLoading(true)
-            is AlbumState.Success -> binding.contentDetailUser.showSuccessContent(state.data)
+            is AlbumState.Success -> {
+                viewModel.getAlbumPhotos(state.data)
+                binding.contentDetailUser.showSuccessContent(state.data)
+            }
         }
     }
 

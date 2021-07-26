@@ -72,6 +72,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_collapseMode="parallax"
             android:padding="@dimen/dimen_16">
 
             <ImageView
