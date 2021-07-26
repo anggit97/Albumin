@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,8 +64,11 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
     private fun ContentDetailUserBinding.setupView(viewModel: UserDetailViewModel) {
         albumAdapter = AlbumAdapter(root.context, listener = {
             requireActivity().showToast(it.title)
-        }, listenerPhoto = {
-            findNavController().navigate(UserDetailFragmentDirections.actionToFullScreenImage(it))
+        }, listenerPhoto = { photo, sharedElements ->
+            findNavController().navigate(
+                UserDetailFragmentDirections.actionToFullScreenImage(photo),
+                FragmentNavigatorExtras(*sharedElements)
+            )
         })
 
         rvAlbum.apply {
@@ -89,14 +93,6 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
     private fun handlePhotoState(photos: List<Photo>) {
         val result = viewModel.getUpdateList(photos, albumAdapter.currentList)
         albumAdapter.submitList(result)
-
-//        when (state) {
-//            is PhotosState.Success -> {
-//                val result = viewModel.getUpdateList(state.data, albumAdapter.currentList)
-//                albumAdapter.submitList(result)
-//            }
-//            else -> {}
-//        }
     }
 
     private fun handleAlbumState(state: AlbumState) {

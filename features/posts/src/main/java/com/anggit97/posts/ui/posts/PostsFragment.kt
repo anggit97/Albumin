@@ -3,10 +3,12 @@ package com.anggit97.posts.ui.posts
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -17,6 +19,8 @@ import com.anggit97.posts.R
 import com.anggit97.posts.databinding.ContentPostsBinding
 import com.anggit97.posts.databinding.FragmentPostsBinding
 import com.anggit97.posts.databinding.HeaderPostsBinding
+import com.google.android.material.transition.Hold
+import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.Insetter
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
@@ -32,9 +36,13 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
 
     private val listAdapter: PostsAdapter by lazy {
         PostsAdapter(binding.contentPosts.root.context) { post, sharedElements ->
+            reenterTransition = MaterialElevationScale(true).apply {
+                duration = 500L
+            }
+
             findNavController().navigate(
-                PostsFragmentDirections.actionToDetailPost(post)
-//                FragmentNavigatorExtras(*sharedElements)
+                PostsFragmentDirections.actionToDetailPost(post),
+                FragmentNavigatorExtras(*sharedElements)
             )
         }
     }
@@ -42,6 +50,8 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentPostsBinding.bind(view)
         binding.apply {
+            postponeEnterTransition()
+            root.doOnPreDraw { startPostponedEnterTransition() }
             fetchData()
             contentPosts.setupView(viewModels)
         }

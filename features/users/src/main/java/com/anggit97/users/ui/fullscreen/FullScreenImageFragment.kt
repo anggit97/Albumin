@@ -19,6 +19,7 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,6 +28,14 @@ class FullScreenImageFragment : Fragment(R.layout.fragment_full_screen_image) {
     private var binding: FragmentFullScreenImageBinding by autoCleared()
 
     private val args: FullScreenImageFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            duration = 300L
+            isElevationShadowEnabled = true
+        }
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,6 +55,8 @@ class FullScreenImageFragment : Fragment(R.layout.fragment_full_screen_image) {
     }
 
     private fun ContentDetailFullscreenBinding.setView(photo: Photo) {
+        photoView.transitionName = photo.url
+
         GlideApp.with(this@FullScreenImageFragment)
             .asBitmap()
             .load(photo.url.toGlideUrl())

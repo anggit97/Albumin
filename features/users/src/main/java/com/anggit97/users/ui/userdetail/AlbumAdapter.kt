@@ -2,6 +2,7 @@ package com.anggit97.users.ui.userdetail
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -21,7 +22,7 @@ class AlbumAdapter(
     context: Context,
     diffCallback: DiffUtil.ItemCallback<Album> = IdBasedDiffCallback { it.id.toString() },
     private val listener: (Album) -> Unit,
-    private val listenerPhoto: (Photo) -> Unit
+    private val listenerPhoto: (Photo, Array<Pair<View, String>>) -> Unit
 ) : ListAdapter<Album, AlbumAdapter.PostViewHolder>(diffCallback) {
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -29,12 +30,12 @@ class AlbumAdapter(
     class PostViewHolder(private val binding: AlbumItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Album?, listenerPhoto: (Photo) -> Unit) {
+        fun bind(item: Album?, listenerPhoto: (Photo, Array<Pair<View, String>>) -> Unit) {
             binding.apply {
                 tvAlbumTitle.text = item?.title
 
-                val photoAdapter = PhotosAdapter(root.context) {
-                    listenerPhoto(it)
+                val photoAdapter = PhotosAdapter(root.context) { photo, sharedElements ->
+                    listenerPhoto(photo, sharedElements)
                 }
 
                 rvPhotos.apply {

@@ -21,6 +21,8 @@ import com.anggit97.posts.R
 import com.anggit97.posts.databinding.ContentDetailPostBinding
 import com.anggit97.posts.databinding.FragmentPostDetailBinding
 import com.anggit97.posts.databinding.HeaderDetailPostBinding
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
 
@@ -34,6 +36,14 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
     private val viewModel by viewModels<PostDetailViewModel>()
 
     private lateinit var commentAdapter: CommentsAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            duration = 300L
+            isElevationShadowEnabled = true
+        }
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,6 +73,12 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
         tvPostBody.text = post.body
         ivUserAvatar.loadAsyncCircle(post.user.getAvatarUrl())
 
+        tvUserName.transitionName = post.getSharedElementUsernameId()
+        tvUserCompany.transitionName = post.getSharedElementCompanyId()
+        ivUserAvatar.transitionName = post.getSharedElementAvatarId()
+        tvPostTitle.transitionName = post.getSharedElementTitleId()
+        tvPostBody.transitionName = post.getSharedElementBodyId()
+
         tvUserName.setOnDebounceClickListener {
             navigateToDetailUser()
         }
@@ -76,7 +92,10 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
         }
     }
 
-    private fun navigateToDetailUser(){
+    private fun navigateToDetailUser() {
+        reenterTransition = MaterialElevationScale(true).apply {
+            duration = 500L
+        }
         findNavController().navigate(PostDetailFragmentDirections.actionToDetailUser(args.post.user))
     }
 

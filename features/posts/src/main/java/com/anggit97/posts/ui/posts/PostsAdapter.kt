@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.StringRes
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -30,18 +30,20 @@ class PostsAdapter(
     class PostViewHolder(private val binding: PostItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        val userNameView = binding.tvUserName
-        val userCompanyView = binding.tvUserCompany
-        val userAvatarView = binding.ivUserAvatar
+        val usernameView = binding.tvUserName
+        val companyView = binding.tvUserCompany
+        val avatarView = binding.ivUserAvatar
+        val titleView = binding.tvPostTitle
+        val bodyView = binding.tvPostBody
 
         fun bind(item: Post?) {
             binding.apply {
-                userNameView.text = item?.user?.name
-                userCompanyView.text =
+                usernameView.text = item?.user?.name
+                companyView.text =
                     root.context.getString(R.string.working_at, item?.user?.company)
-                tvPostTitle.text = item?.title
-                tvPostBody.text = item?.body
-                userAvatarView.loadAsyncCircle(item?.user?.getAvatarUrl())
+                titleView.text = item?.title
+                bodyView.text = item?.body
+                avatarView.loadAsyncCircle(item?.user?.getAvatarUrl())
             }
         }
     }
@@ -53,7 +55,12 @@ class PostsAdapter(
                 val index = bindingAdapterPosition
                 if (index in 0..itemCount) {
                     val post: Post = getItem(index)
-                    listener(post, createSharedElements())
+                    ViewCompat.setTransitionName(usernameView, post.getSharedElementUsernameId())
+                    ViewCompat.setTransitionName(avatarView, post.getSharedElementAvatarId())
+                    ViewCompat.setTransitionName(companyView, post.getSharedElementCompanyId())
+                    ViewCompat.setTransitionName(titleView, post.getSharedElementTitleId())
+                    ViewCompat.setTransitionName(bodyView, post.getSharedElementBodyId())
+                    listener(post, createSharedElements(post))
                 }
             }
         }
@@ -63,16 +70,14 @@ class PostsAdapter(
         getItem(position)?.let { (holder as? PostViewHolder)?.bind(item = it) }
     }
 
-    private infix fun View.to(@StringRes tagId: Int): Pair<View, String> {
-        return Pair(this, context.getString(tagId))
-    }
-
-    private fun PostViewHolder.createSharedElements(): Array<Pair<View, String>> {
+    private fun PostViewHolder.createSharedElements(post: Post): Array<Pair<View, String>> {
         itemView.run {
             val sharedElements = mutableListOf(
-                userNameView to R.string.transition_username,
-                userAvatarView to R.string.transition_avatar,
-                userCompanyView to R.string.transition_company,
+                usernameView to post.getSharedElementUsernameId(),
+                companyView to post.getSharedElementCompanyId(),
+                avatarView to post.getSharedElementAvatarId(),
+                titleView to post.getSharedElementTitleId(),
+                bodyView to post.getSharedElementBodyId()
             )
             return sharedElements.toTypedArray()
         }

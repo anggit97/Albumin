@@ -2,7 +2,9 @@ package com.anggit97.users.ui.userdetail
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +12,7 @@ import com.anggit97.core.ext.loadAsync
 import com.anggit97.core.util.IdBasedDiffCallback
 import com.anggit97.core.util.setOnDebounceClickListener
 import com.anggit97.domain.model.Photo
+import com.anggit97.domain.model.Post
 import com.anggit97.users.databinding.PhotoItemBinding
 
 /**
@@ -19,7 +22,7 @@ import com.anggit97.users.databinding.PhotoItemBinding
 class PhotosAdapter(
     context: Context,
     diffCallback: DiffUtil.ItemCallback<Photo> = IdBasedDiffCallback { it.id.toString() },
-    private val listener: (Photo) -> Unit
+    private val listener: (Photo, Array<Pair<View, String>>) -> Unit
 ) : ListAdapter<Photo, PhotosAdapter.PostViewHolder>(diffCallback) {
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -27,10 +30,21 @@ class PhotosAdapter(
     class PostViewHolder(private val binding: PhotoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        val photoView = binding.ivPhoto
+
         fun bind(item: Photo?) {
             binding.apply {
-                ivPhoto.loadAsync(item?.thumbnailUrl)
+                photoView.loadAsync(item?.thumbnailUrl)
             }
+        }
+    }
+
+    private fun PostViewHolder.createSharedElements(photo: Photo): Array<Pair<View, String>> {
+        itemView.run {
+            val sharedElements = mutableListOf(
+                photoView to photo.url
+            )
+            return sharedElements.toTypedArray()
         }
     }
 
@@ -41,7 +55,8 @@ class PhotosAdapter(
                 val index = bindingAdapterPosition
                 if (index in 0..itemCount) {
                     val photo: Photo = getItem(index)
-                    listener(photo)
+                    ViewCompat.setTransitionName(photoView, photo.url)
+                    listener(photo, createSharedElements(photo))
                 }
             }
         }
