@@ -1,6 +1,11 @@
 package com.anggit97.albumin
 
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -9,6 +14,7 @@ import com.anggit97.core.base.BaseActivity
 import com.anggit97.core.ui.base.consumeBackEventInChildFragment
 import com.anggit97.core.util.viewBindings
 import dagger.hilt.android.AndroidEntryPoint
+import dev.chrisbanes.insetter.Insetter
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -30,6 +36,8 @@ class HomeActivity : BaseActivity() {
             val backStackEntry = navHostFragment.childFragmentManager.backStackEntryCount
             Timber.d("BACKSTACK COUNT : $backStackEntry")
         }
+
+        setUpStatusBarColor()
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
@@ -42,6 +50,13 @@ class HomeActivity : BaseActivity() {
             finishAfterTransition()
         } else {
             super.onBackPressed()
+        }
+    }
+
+    private fun setUpStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
     }
 

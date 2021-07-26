@@ -2,7 +2,9 @@ package com.anggit97.posts.ui.posts
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -14,7 +16,9 @@ import com.anggit97.domain.model.Post
 import com.anggit97.posts.R
 import com.anggit97.posts.databinding.ContentPostsBinding
 import com.anggit97.posts.databinding.FragmentPostsBinding
+import com.anggit97.posts.databinding.HeaderPostsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import dev.chrisbanes.insetter.Insetter
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
 import timber.log.Timber
 
@@ -101,7 +105,7 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     }
 
     override fun onDestroyView() {
-//        _binding = null
+        _binding = null
         super.onDestroyView()
     }
 }

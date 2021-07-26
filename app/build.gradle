@@ -80,6 +80,8 @@ dependencies {
 
     implementation Libs.Google.material
 
+    implementation Libs.insetter
+
     implementation Libs.AndroidX.Lifecycle.livedata
     implementation Libs.AndroidX.Lifecycle.viewmodel
     implementation Libs.AndroidX.Lifecycle.runtime

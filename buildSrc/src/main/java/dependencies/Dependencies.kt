@@ -67,6 +67,7 @@ object Libs {
         const val fragment = "androidx.fragment:fragment-ktx:1.3.4"
         const val preference = "androidx.preference:preference-ktx:1.1.1"
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
+        const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
         const val startup = "androidx.startup:startup-runtime:1.0.0"
         const val transition = "androidx.transition:transition:1.4.1"
         const val viewpager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"

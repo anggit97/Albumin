@@ -20,6 +20,7 @@ dependencies {
     implementation Libs.AndroidX.core
     implementation Libs.AndroidX.constraintlayout
     implementation Libs.AndroidX.recyclerview
+    implementation Libs.AndroidX.swiperefreshlayout
     implementation Libs.AndroidX.Paging.runtime
 
     implementation Libs.Google.material
@@ -29,14 +30,14 @@ dependencies {
     implementation Libs.AndroidX.Navigation.fragment
 
     implementation Libs.Dagger.hilt
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.Dagger.hiltCompiler
     kapt Libs.AndroidX.Hilt.compiler
 
     implementation Libs.timber
 
     implementation Libs.lottie
+
+    implementation Libs.insetter
 
     implementation Libs.Shimmer.shimmer
 
