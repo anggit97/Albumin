@@ -1,7 +1,6 @@
 package com.anggit97.domain
 
-import com.anggit97.domain.model.Album
-import com.anggit97.domain.model.Photo
+import com.anggit97.domain.model.*
 
 
 /**
@@ -28,5 +27,77 @@ fun getAlbumPhotosListAlbum() = listOf(
         title = "title 2",
         url = "https://example.com/gambar.png",
         albumId = 1
+    )
+)
+
+fun getPostList() = listOf(
+    Post(
+        body = "body 1", id = 1, title = "title 1", userId = 1, user = User(
+            address = "",
+            company = "",
+            email = "",
+            id = 0,
+            name = "",
+            username = ""
+        )
+    ),
+    Post(
+        body = "body 2", id = 2, title = "title 2", userId = 2, user = User(
+            address = "",
+            company = "",
+            email = "",
+            id = 0,
+            name = "",
+            username = ""
+        )
+    )
+)
+
+fun getPostCommentList() = listOf(
+    Comment(body = "comment 1", id = 1, name = "author 1"),
+    Comment(body = "comment 2", id = 2, name = "author 2")
+)
+
+fun getUserList() = listOf(
+    User(
+        address = "Pondok",
+        company = "PT XYZ",
+        email = "1@example.com",
+        id = 1,
+        name = "User 1",
+        username = "user1"
+    ),
+    User(
+        address = "Jakarta",
+        company = "PT XMM",
+        email = "2@example.com",
+        id = 2,
+        name = "User 2",
+        username = "user2"
+    ),
+)
+
+fun getExpectedPostList() = listOf(
+    Post(
+        body = "body 1", id = 1, title = "title 1", userId = 1,
+        user = User(
+            address = "Pondok",
+            company = "PT XYZ",
+            email = "1@example.com",
+            id = 1,
+            name = "User 1",
+            username = "user1"
+        ),
+    ),
+    Post(
+        body = "body 2", id = 2, title = "title 2", userId = 2,
+        user = User(
+            address = "Jakarta",
+            company = "PT XMM",
+            email = "2@example.com",
+            id = 2,
+            name = "User 2",
+            username = "user2"
+        ),
     )
 )
