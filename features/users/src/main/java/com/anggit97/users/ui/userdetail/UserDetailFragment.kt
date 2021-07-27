@@ -21,6 +21,7 @@ import com.anggit97.users.R
 import com.anggit97.users.databinding.ContentDetailUserBinding
 import com.anggit97.users.databinding.FragmentUserDetailBinding
 import com.anggit97.users.databinding.HeaderDetailUserBinding
+import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
 
@@ -65,6 +66,9 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
         albumAdapter = AlbumAdapter(root.context, listener = {
             requireActivity().showToast(it.title)
         }, listenerPhoto = { photo, sharedElements ->
+            reenterTransition = MaterialElevationScale(true).apply {
+                duration = 500L
+            }
             findNavController().navigate(
                 UserDetailFragmentDirections.actionToFullScreenImage(photo),
                 FragmentNavigatorExtras(*sharedElements)
