@@ -1,6 +1,7 @@
 package com.anggit97.data
 
 import com.anggit97.data.api.response.AddressResponse
+import com.anggit97.data.api.response.AlbumResponse
 import com.anggit97.data.api.response.CompanyResponse
 import com.anggit97.data.api.response.UserResponse
 import com.anggit97.domain.model.User
@@ -56,4 +57,17 @@ fun getUserAddressResponseDummy() = AddressResponse(
 
 fun getUserCompanyResponseDummy() = CompanyResponse(
     bs = null, catchPhrase = null, name = "PT XYZ"
+)
+
+fun getUserAlbumsResponseList() = listOf(
+    AlbumResponse(
+        id = 1,
+        title = "Album 1",
+        userId = 1
+    ),
+    AlbumResponse(
+        id = 1,
+        title = "Album 2",
+        userId = 1
+    )
 )

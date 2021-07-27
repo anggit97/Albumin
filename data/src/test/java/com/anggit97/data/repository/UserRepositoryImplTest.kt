@@ -2,9 +2,11 @@ package com.anggit97.data.repository
 
 import app.cash.turbine.test
 import com.anggit97.data.api.AlbuminApiService
+import com.anggit97.data.getUserAlbumsResponseList
 import com.anggit97.data.getUserAddressResponseDummy
 import com.anggit97.data.getUserResponseListDummy
 import com.anggit97.data.toAddress
+import com.anggit97.domain.model.Album
 import com.anggit97.domain.model.User
 import com.anggit97.domain.repository.UserRepository
 import io.mockk.MockKAnnotations
@@ -31,13 +33,20 @@ class UserRepositoryImplTest {
     @MockK
     lateinit var apiService: AlbuminApiService
 
-    private val user = User(
+    private val expectedUser = User(
         address = getUserAddressResponseDummy().toAddress(),
         company = "PT XYZ",
         email = "x@example.com",
         id = 1,
         name = "example 1",
         username = "example1"
+    )
+
+    private val expectedAlbum = Album(
+        id = 1,
+        title = "Album 1",
+        userId = 1,
+        photos = listOf()
     )
 
     @Before
@@ -52,7 +61,7 @@ class UserRepositoryImplTest {
         //given
         val expectNameFirstUser = "example 1"
         val expectTotalUsers = 2
-        val expectedFirstItem = user
+        val expectedFirstItem = expectedUser
 
         coEvery { apiService.getUsers() }.returns(getUserResponseListDummy())
 
@@ -108,6 +117,64 @@ class UserRepositoryImplTest {
 
         //when
         val result = sut.getUsers()
+
+        //assert
+        result.test {
+            expectError()
+        }
+    }
+
+    @Test
+    fun `when get user albums, should return list of user albums from service`() = runBlocking {
+        //given
+        val expectedFirstItem = expectedAlbum
+        val userId = "1"
+
+        coEvery { apiService.getUserAlbums(userId) }.returns(getUserAlbumsResponseList())
+
+        //when
+        val result = sut.getUserAlbums(userId)
+
+        //assert
+        result.test {
+            assertEquals(expectedFirstItem, expectItem().first())
+            expectComplete()
+        }
+
+        coVerify(atLeast = 1) { apiService.getUserAlbums(userId) }
+    }
+
+    @Test
+    fun `when get user albums, should return empty user albums from service`() = runBlocking {
+        //given
+        val expectEmptyList = listOf<Album>()
+        val expectTotalItem = 0
+        val userId = "1"
+
+        coEvery { apiService.getUserAlbums(userId) }.returns(emptyList())
+
+        //when
+        val result = sut.getUserAlbums(userId)
+
+        //asert
+        result.test {
+            assertEquals(expectEmptyList, expectItem())
+            expectComplete()
+        }
+
+        result.test {
+            assertEquals(expectTotalItem, expectItem().size)
+            expectComplete()
+        }
+    }
+
+    @Test
+    fun `when get user albums, should return error from service`() = runBlocking {
+        val userId = "1"
+        coEvery { apiService.getUserAlbums(userId) }.throws(Throwable("Error!"))
+
+        //when
+        val result = sut.getUserAlbums(userId)
 
         //assert
         result.test {
