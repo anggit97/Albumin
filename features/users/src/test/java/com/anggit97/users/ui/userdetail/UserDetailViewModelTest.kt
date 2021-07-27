@@ -58,7 +58,6 @@ class UserDetailViewModelTest {
 
         every { observerAlbum.onChanged(AlbumState.ShowLoading) } answers {}
         every { observerAlbum.onChanged(AlbumState.Success(getUserAlbumsListDummy())) } answers {}
-        every { observerAlbum.onChanged(AlbumState.HideLoading) } answers {}
         coEvery { userUseCase.getUserAlbums(userId) }.returns(flowOf(getUserAlbumsListDummy()))
 
         sut.album.observeForever(observerAlbum)
@@ -78,7 +77,6 @@ class UserDetailViewModelTest {
             userUseCase.getUserAlbums(userId)
             observerAlbum.onChanged(AlbumState.ShowLoading)
             observerAlbum.onChanged(AlbumState.Success(getUserAlbumsListDummy()))
-            observerAlbum.onChanged(AlbumState.HideLoading)
         }
 
         clearMocks(userUseCase, observerAlbum)
