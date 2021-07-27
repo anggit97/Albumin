@@ -127,7 +127,6 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
     private fun handleCommentState(state: PostCommentState) {
         when (state) {
             is PostCommentState.Error -> binding.contentDetailPost.showErrorContent()
-            is PostCommentState.HideLoading -> binding.contentDetailPost.handleLoading(false)
             is PostCommentState.ShowLoading -> binding.contentDetailPost.handleLoading(true)
             is PostCommentState.Success -> {
                 binding.contentDetailPost.tvCommentHeader.text =
@@ -140,8 +139,8 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
     private fun ContentDetailPostBinding.showErrorContent() {
         rvComments.setGone()
         viewEmpty.root.setGone()
-        viewErrorConnection.root.setGone()
-        viewLoading.root.setVisible()
+        viewErrorConnection.root.setVisible()
+        viewLoading.root.setGone()
     }
 
     private fun ContentDetailPostBinding.handleLoading(isLoading: Boolean) {

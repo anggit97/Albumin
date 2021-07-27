@@ -40,7 +40,6 @@ class PostViewModel @Inject constructor(
             postUseCase.getPostList()
                 .catch { _postState.value = PostListState.Error(it) }
                 .onStart { _postState.value = PostListState.ShowLoading }
-                .onCompletion { _postState.value = PostListState.HideLoading }
                 .collectLatest {
                     _postState.value = PostListState.Success(it)
                     value = 1
@@ -57,5 +56,4 @@ sealed class PostListState {
     data class Success(val data: List<Post>) : PostListState()
     data class Error(val error: Throwable) : PostListState()
     object ShowLoading : PostListState()
-    object HideLoading : PostListState()
 }

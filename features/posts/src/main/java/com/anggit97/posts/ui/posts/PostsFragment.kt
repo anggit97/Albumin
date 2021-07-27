@@ -84,7 +84,6 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     private fun handleContentState(state: PostListState) {
         when (state) {
             is PostListState.Error -> binding.contentPosts.showErrorContent()
-            is PostListState.HideLoading -> binding.contentPosts.handleLoading(false)
             is PostListState.ShowLoading -> binding.contentPosts.handleLoading(true)
             is PostListState.Success -> {
                 binding.contentPosts.showSuccessContent(state.data)
@@ -95,8 +94,8 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     private fun ContentPostsBinding.showErrorContent() {
         rvPost.setGone()
         viewEmpty.root.setGone()
-        viewErrorConnection.root.setGone()
-        viewLoading.root.setVisible()
+        viewErrorConnection.root.setVisible()
+        viewLoading.root.setGone()
     }
 
     private fun ContentPostsBinding.handleLoading(isLoading: Boolean) {

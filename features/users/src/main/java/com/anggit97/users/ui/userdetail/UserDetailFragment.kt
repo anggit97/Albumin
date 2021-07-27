@@ -102,7 +102,6 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
     private fun handleAlbumState(state: AlbumState) {
         when (state) {
             is AlbumState.Error -> binding.contentDetailUser.showErrorContent()
-            is AlbumState.HideLoading -> binding.contentDetailUser.handleLoading(false)
             is AlbumState.ShowLoading -> binding.contentDetailUser.handleLoading(true)
             is AlbumState.Success -> {
                 viewModel.getAlbumPhotos(state.data)
@@ -114,8 +113,8 @@ class UserDetailFragment : Fragment(R.layout.fragment_user_detail) {
     private fun ContentDetailUserBinding.showErrorContent() {
         rvAlbum.setGone()
         viewEmpty.root.setGone()
-        viewErrorConnection.root.setGone()
-        viewLoading.root.setVisible()
+        viewErrorConnection.root.setVisible()
+        viewLoading.root.setGone()
     }
 
     private fun ContentDetailUserBinding.handleLoading(isLoading: Boolean) {

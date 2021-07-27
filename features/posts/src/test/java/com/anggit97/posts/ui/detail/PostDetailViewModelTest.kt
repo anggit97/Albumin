@@ -56,7 +56,6 @@ class PostDetailViewModelTest {
 
         every { observer.onChanged(PostCommentState.ShowLoading) } answers {}
         every { observer.onChanged(PostCommentState.Success(getPostCommentList())) } answers {}
-        every { observer.onChanged(PostCommentState.HideLoading) } answers {}
         coEvery { postUseCase.getPostComment(postId) }.returns(flowOf(getPostCommentList()))
 
         sut.commentState.observeForever(observer)
@@ -74,7 +73,6 @@ class PostDetailViewModelTest {
             postUseCase.getPostComment(postId)
             observer.onChanged(PostCommentState.ShowLoading)
             observer.onChanged(PostCommentState.Success(getPostCommentList()))
-            observer.onChanged(PostCommentState.HideLoading)
         }
 
         clearMocks(postUseCase, observer)

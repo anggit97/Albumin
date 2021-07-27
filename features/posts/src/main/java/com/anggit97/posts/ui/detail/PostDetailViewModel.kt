@@ -39,7 +39,6 @@ class PostDetailViewModel @Inject constructor(
             postUseCase.getPostComment(postId)
                 .catch { _commentState.value = PostCommentState.Error(it) }
                 .onStart { _commentState.value = PostCommentState.ShowLoading }
-                .onCompletion { _commentState.value = PostCommentState.HideLoading }
                 .collectLatest {
                     _commentState.value = PostCommentState.Success(it)
                     value = 1
@@ -52,5 +51,4 @@ sealed class PostCommentState {
     data class Success(val data: List<Comment>) : PostCommentState()
     data class Error(val error: Throwable) : PostCommentState()
     object ShowLoading : PostCommentState()
-    object HideLoading : PostCommentState()
 }

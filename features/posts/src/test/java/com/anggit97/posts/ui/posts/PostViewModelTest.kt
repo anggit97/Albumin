@@ -66,7 +66,6 @@ class PostViewModelTest {
 
         every { observer.onChanged(PostListState.ShowLoading) } answers {}
         every { observer.onChanged(PostListState.Success(getPostList())) } answers {}
-        every { observer.onChanged(PostListState.HideLoading) } answers {}
         coEvery { postUseCase.getPostList() }.returns(flowOf(getPostList()))
 
         sut.postState.observeForever(observer)
@@ -86,7 +85,6 @@ class PostViewModelTest {
             postUseCase.getPostList()
             observer.onChanged(PostListState.ShowLoading)
             observer.onChanged(PostListState.Success(getPostList()))
-            observer.onChanged(PostListState.HideLoading)
         }
 
         clearMocks(postUseCase, observer)

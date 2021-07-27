@@ -40,7 +40,6 @@ class UserDetailViewModel @Inject constructor(
             userUseCase.getUserAlbums(userId)
                 .catch { _album.value = AlbumState.Error(it) }
                 .onStart { _album.value = AlbumState.ShowLoading }
-                .onCompletion { _album.value = AlbumState.HideLoading }
                 .collectLatest {
                     _album.value = AlbumState.Success(it)
                 }
@@ -81,5 +80,4 @@ sealed class AlbumState {
     data class Success(val data: List<Album>) : AlbumState()
     data class Error(val error: Throwable) : AlbumState()
     object ShowLoading : AlbumState()
-    object HideLoading : AlbumState()
 }
