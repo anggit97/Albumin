@@ -4,7 +4,7 @@
 
 ## Table of Content
 - [Apps Feature](#apps-feature)
-- [Tech stack](#built-with)
+- [Tech stack](#tech-stack)
 - [Support me](#How-to-support-me-?-)
 - [License](#license)
 
