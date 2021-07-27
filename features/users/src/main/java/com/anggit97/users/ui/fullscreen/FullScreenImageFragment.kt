@@ -4,9 +4,11 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.anggit97.core.ext.getPlaceHolder
 import com.anggit97.core.glide.GlideApp
 import com.anggit97.core.util.autoCleared
 import com.anggit97.core.util.setOnDebounceClickListener
@@ -41,6 +43,8 @@ class FullScreenImageFragment : Fragment(R.layout.fragment_full_screen_image) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFullScreenImageBinding.bind(view).apply {
             val photo = args.photo
+            postponeEnterTransition()
+            root.doOnPreDraw { startPostponedEnterTransition() }
             headerDetailFullScreenImage.setView(photo)
             contentDetailFullscreenImage.setView(photo)
         }
@@ -60,6 +64,7 @@ class FullScreenImageFragment : Fragment(R.layout.fragment_full_screen_image) {
         GlideApp.with(this@FullScreenImageFragment)
             .asBitmap()
             .load(photo.url.toGlideUrl())
+            .placeholder(getPlaceHolder(requireActivity().applicationContext))
             .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     photoView.setImageBitmap(resource)

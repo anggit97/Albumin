@@ -24,6 +24,7 @@ dependencies {
     implementation Libs.AndroidX.constraintlayout
     implementation Libs.AndroidX.fragment
     implementation Libs.AndroidX.recyclerview
+    implementation Libs.AndroidX.swiperefreshlayout
 
     implementation Libs.Google.material
 

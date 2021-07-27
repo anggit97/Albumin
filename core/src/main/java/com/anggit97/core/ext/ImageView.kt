@@ -21,6 +21,7 @@ import android.graphics.ColorMatrixColorFilter
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anggit97.core.glide.GlideApp
 import com.anggit97.core.glide.GlideRequest
 import com.bumptech.glide.Priority
@@ -48,12 +49,20 @@ fun ImageView.loadAsync(url: String?, @DrawableRes placeholder: Int? = null) {
             url,
             block = {
                 if (placeholder != null) {
-                    placeholder(placeholder)
+                    placeholder(getPlaceHolder(context))
                 }
                 transition(withCrossFade())
             }
         )
     }
+}
+
+fun getPlaceHolder(context: Context): CircularProgressDrawable{
+    val circularProgressDrawable = CircularProgressDrawable(context)
+    circularProgressDrawable.strokeWidth = 5f
+    circularProgressDrawable.centerRadius = 30f
+    circularProgressDrawable.start()
+    return circularProgressDrawable
 }
 
 fun ImageView.loadAsyncCircle(url: String?, @DrawableRes placeholder: Int? = null) {
