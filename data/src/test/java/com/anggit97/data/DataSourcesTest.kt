@@ -85,3 +85,12 @@ fun getAlbumPhotosResponseList() = listOf(
         albumId = 1
     )
 )
+
+fun getPostResponseList() = listOf(
+    PostResponse(
+        body = "body 1", id = 1, title = "title 1", userId = 1
+    ),
+    PostResponse(
+        body = "body 2", id = 2, title = "title 2", userId = 2
+    )
+)
