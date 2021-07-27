@@ -6,6 +6,7 @@ import app.cash.turbine.test
 import com.anggit97.domain.model.Post
 import com.anggit97.domain.model.User
 import com.anggit97.domain.usecase.PostUseCase
+import com.anggit97.posts.MainCoroutineScopeRule
 import com.anggit97.posts.getPostList
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -34,6 +35,9 @@ class PostViewModelTest {
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
+    @get:Rule
+    val coroutineScope = MainCoroutineScopeRule()
+
     @MockK
     lateinit var postUseCase: PostUseCase
 
@@ -42,7 +46,6 @@ class PostViewModelTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        Dispatchers.setMain(Dispatchers.Unconfined)
         sut = PostViewModel(postUseCase)
     }
 
