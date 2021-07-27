@@ -1,9 +1,6 @@
 package com.anggit97.data
 
-import com.anggit97.data.api.response.AddressResponse
-import com.anggit97.data.api.response.AlbumResponse
-import com.anggit97.data.api.response.CompanyResponse
-import com.anggit97.data.api.response.UserResponse
+import com.anggit97.data.api.response.*
 import com.anggit97.domain.model.User
 import java.io.InputStreamReader
 
@@ -69,5 +66,22 @@ fun getUserAlbumsResponseList() = listOf(
         id = 1,
         title = "Album 2",
         userId = 1
+    )
+)
+
+fun getAlbumPhotosResponseList() = listOf(
+    PhotoResponse(
+        id = 1,
+        thumbnailUrl = "https://via.placeholder.com/150/92c952",
+        title = "photo 1",
+        url = "https://via.placeholder.com/600/92c952",
+        albumId = 1
+    ),
+    PhotoResponse(
+        id = 2,
+        thumbnailUrl = "https://via.placeholder.com/150/92c952",
+        title = "photo 2",
+        url = "https://via.placeholder.com/600/92c952",
+        albumId = 1
     )
 )
