@@ -4,10 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.anggit97.core.ext.getColorCompat
 import com.anggit97.core.ext.loadAsyncCircle
 import com.anggit97.core.util.IdBasedDiffCallback
 import com.anggit97.core.util.setOnDebounceClickListener
@@ -44,6 +46,18 @@ class PostsAdapter(
                 titleView.text = item?.title
                 bodyView.text = item?.body
                 avatarView.loadAsyncCircle(item?.user?.getAvatarUrl())
+
+
+                container.setview()
+            }
+        }
+
+        private fun CardView.setview() {
+            val even = bindingAdapterPosition.rem(2) == 0
+            if (even) {
+                setCardBackgroundColor(context.getColorCompat(R.color.malibu))
+            } else {
+                setCardBackgroundColor(context.getColorCompat(R.color.indigo200))
             }
         }
     }
