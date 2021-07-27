@@ -94,3 +94,12 @@ fun getPostResponseList() = listOf(
         body = "body 2", id = 2, title = "title 2", userId = 2
     )
 )
+
+fun getPostCommentsResponseList() = listOf(
+    CommentResponse(
+        body = "comment 1", id = 1, name = "author 1", email = "", postId = 1
+    ),
+    CommentResponse(
+        body = "comment 2", id = 2, name = "author 2", email = "", postId = 1
+    )
+)

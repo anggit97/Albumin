@@ -2,9 +2,9 @@ package com.anggit97.data.repository
 
 import app.cash.turbine.test
 import com.anggit97.data.api.AlbuminApiService
+import com.anggit97.data.getPostCommentsResponseList
 import com.anggit97.data.getPostResponseList
-import com.anggit97.data.getUserAddressResponseDummy
-import com.anggit97.data.toAddress
+import com.anggit97.domain.model.Comment
 import com.anggit97.domain.model.Post
 import com.anggit97.domain.model.User
 import com.anggit97.domain.repository.PostRepository
@@ -43,6 +43,10 @@ class PostRepositoryImplTest {
 
     private val expectedPost = Post(
         body = "body 1", id = 1, title = "title 1", userId = 1, user = expectedUser
+    )
+
+    private val expectedComment = Comment(
+        body = "comment 1", id = 1, name = "author 1"
     )
 
     @Before
@@ -121,5 +125,69 @@ class PostRepositoryImplTest {
         }
 
         coVerify(atLeast = 1) { apiService.getPosts() }
+    }
+
+    @Test
+    fun `when get post comments, should return list of post comments from service`() = runBlocking {
+        //given
+        val expectedFirstItem = expectedComment
+        val postId = "1"
+
+        coEvery { apiService.getPostComment(postId) }.returns(getPostCommentsResponseList())
+
+        //when
+        val result = sut.getPostComment(postId)
+
+        //assert
+        result.test {
+            assertEquals(expectedFirstItem, expectItem().first())
+            expectComplete()
+        }
+
+        coVerify(atLeast = 1) { apiService.getPostComment(postId) }
+    }
+
+    @Test
+    fun `when get post comments, should return empty post comments from service`() = runBlocking {
+        //given
+        val expectEmptyList = listOf<Comment>()
+        val expectTotalItem = 0
+        val postId = "1"
+
+        coEvery { apiService.getPostComment(postId) }.returns(emptyList())
+
+        //when
+        val result = sut.getPostComment(postId)
+
+        //asert
+        result.test {
+            assertEquals(expectEmptyList, expectItem())
+            expectComplete()
+        }
+
+        result.test {
+            assertEquals(expectTotalItem, expectItem().size)
+            expectComplete()
+            expectNoEvents()
+        }
+
+        coVerify(atLeast = 1) { apiService.getPostComment(postId) }
+    }
+
+    @Test
+    fun `when get post comments, should return error from service`() = runBlocking {
+        //given
+        val postId = "1"
+        coEvery { apiService.getPostComment(postId) }.throws(Throwable("Error!"))
+
+        //when
+        val result = sut.getPostComment(postId)
+
+        //assert
+        result.test {
+            expectError()
+        }
+
+        coVerify(atLeast = 1) { apiService.getPostComment(postId) }
     }
 }
