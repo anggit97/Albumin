@@ -101,6 +101,7 @@ object Libs {
         const val core = "androidx.arch.core:core-testing:2.1.0"
         const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:5.7.1"
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:5.7.1"
+        const val turbine = "app.cash.turbine:turbine:0.5.2"
     }
 
     object Tmkurami {
