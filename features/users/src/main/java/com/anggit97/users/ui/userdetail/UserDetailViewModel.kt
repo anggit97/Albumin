@@ -35,22 +35,6 @@ class UserDetailViewModel @Inject constructor(
     val photos: LiveData<List<Photo>>
         get() = _photos
 
-//    val photos: LiveData<PhotosState> = _album.switchMap { albumState ->
-//        liveData {
-//            if (albumState is AlbumState.Success) {
-//                albumState.data.map {
-//                    userUseCase.getAlbumPhotos(it.id.toString())
-//                        .catch { throwable -> emit(PhotosState.Error(throwable)) }
-//                        .onStart { emit(PhotosState.ShowLoading) }
-//                        .onCompletion { emit(PhotosState.HideLoading) }
-//                        .collect { result ->
-//                            emit(PhotosState.Success(result))
-//                        }
-//                }
-//            }
-//        }
-//    }
-
     override fun getUserAlbums(userId: String) {
         viewModelScope.launch {
             userUseCase.getUserAlbums(userId)
@@ -98,11 +82,4 @@ sealed class AlbumState {
     data class Error(val error: Throwable) : AlbumState()
     object ShowLoading : AlbumState()
     object HideLoading : AlbumState()
-}
-
-sealed class PhotosState {
-    data class Success(val data: List<Photo>) : PhotosState()
-    data class Error(val error: Throwable) : PhotosState()
-    object ShowLoading : PhotosState()
-    object HideLoading : PhotosState()
 }

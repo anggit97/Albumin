@@ -48,7 +48,10 @@ dependencies {
     testImplementation Libs.Test.junit
     testImplementation Libs.Test.mockk
     testImplementation Libs.Test.coroutine
+    testImplementation Libs.Test.turbine
+    testImplementation Libs.Test.core
     androidTestImplementation Libs.Test.mockkAndroid
+    androidTestImplementation Libs.Tmkurami.dexopener
     androidTestImplementation Libs.Test.runner
     androidTestImplementation Libs.Test.junitExt
     androidTestImplementation Libs.Test.espresso
