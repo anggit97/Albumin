@@ -90,6 +90,10 @@ class PostDetailFragment : Fragment(R.layout.fragment_post_detail) {
         ivUserAvatar.setOnDebounceClickListener {
             navigateToDetailUser()
         }
+
+        ivSeeUserDetail.setOnDebounceClickListener {
+            navigateToDetailUser()
+        }
     }
 
     private fun navigateToDetailUser() {

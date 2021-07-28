@@ -32,9 +32,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_10"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textColor="@color/mirage"
                 android:textSize="@dimen/font_normal"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivSee"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@id/ivUserAvatar"
                 app:layout_constraintTop_toTopOf="@id/ivUserAvatar"
@@ -44,13 +46,25 @@
                 android:id="@+id/tvUserCompany"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textColor="@color/nobel"
                 android:textSize="@dimen/font_small"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvUserName"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/tvUserName"
                 app:layout_constraintTop_toBottomOf="@id/tvUserName"
                 tools:text="PT Google Sejahtera" />
+
+            <ImageView
+                android:id="@+id/ivSeeUserDetail"
+                android:layout_width="@dimen/dimen_30"
+                android:layout_height="@dimen/dimen_30"
+                android:contentDescription="@string/detail_user"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                app:layout_constraintBottom_toBottomOf="@id/tvUserCompany"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvUserName" />
 
             <TextView
                 android:id="@+id/tvPostTitle"
@@ -102,8 +116,8 @@
             <include
                 android:id="@+id/viewLoading"
                 layout="@layout/base_loading_post"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -112,8 +126,8 @@
             <include
                 android:id="@+id/viewEmpty"
                 layout="@layout/base_empty_post"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,8 +136,8 @@
             <include
                 android:id="@+id/viewErrorConnection"
                 layout="@layout/base_error_no_internet_connection"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCommentHeader" />

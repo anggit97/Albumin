@@ -21,5 +21,6 @@
     <string name="detail_post">Detail Post</string>
     <string name="comments_count">Comment (%s)</string>
     <string name="detail_user">Detail User</string>
+    <string name="see_user_profile">See profile user</string>
     <string name="detail_fullscreen">Detail Fullscreen</string>
 </resources>
