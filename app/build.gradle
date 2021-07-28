@@ -11,6 +11,8 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 
+apply from: rootProject.file('gradle/script-jacoco.gradle')
+
 android {
     compileSdkVersion Versions.compileSdk
     buildToolsVersion Versions.buildTools
@@ -30,7 +32,9 @@ android {
     }
 
     testOptions {
-        unitTests {
+        animationsDisabled = true
+
+        unitTests{
             includeAndroidResources = true
         }
     }
@@ -40,7 +44,9 @@ android {
     }
 
     buildTypes {
-        debug {}
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

@@ -25,7 +25,7 @@ sealed class ConnectionState {
 fun Context.observeConnectivityAsFlow() = callbackFlow {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    val callback = NetworkCallback { connectionState -> offer(connectionState) }
+    val callback = NetworkCallback { connectionState -> this.trySend(connectionState).isSuccess }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         connectivityManager.registerDefaultNetworkCallback(callback)
@@ -36,7 +36,7 @@ fun Context.observeConnectivityAsFlow() = callbackFlow {
 
     // Set current state
     val currentState = getCurrentConnectivityState(connectivityManager)
-    offer(currentState)
+    this.trySend(currentState).isSuccess
 
     // Remove callback when not used
     awaitClose {

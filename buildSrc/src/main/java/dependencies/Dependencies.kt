@@ -128,6 +128,11 @@ object Libs {
         const val viewPump = "io.github.inflationx:viewpump:2.0.3"
     }
 
+    object Jacoco {
+        const val version = "0.8.6"
+        const val jacoco = "org.jacoco:org.jacoco.core:$version"
+    }
+
     object Glide {
         private const val version = "4.12.0"
         const val runtime = "com.github.bumptech.glide:glide:$version"
